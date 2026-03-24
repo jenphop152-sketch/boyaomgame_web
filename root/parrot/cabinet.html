@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>คณะรัฐมนตรี</title>
+
+<link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3062/3062634.png">
+
+<style>
+body {
+  margin: 0;
+  font-family: "Sarabun", Arial;
+  background: #f5f6fa;
+}
+
+/* 🔷 Navbar */
+.navbar {
+  background: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.navbar h1 {
+  font-size: 18px;
+  color: #002855;
+}
+
+.navbar input {
+  padding: 5px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+/* 🔷 Header */
+.header {
+  background: linear-gradient(to right, #c2b59b, #1e2a78);
+  color: white;
+  padding: 30px;
+  font-size: 28px;
+}
+
+/* 🔷 Layout */
+.container {
+  display: flex;
+  padding: 20px;
+}
+
+/* 🔷 Sidebar */
+.sidebar {
+  width: 200px;
+}
+
+.sidebar button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #e0e0e0;
+  cursor: pointer;
+}
+
+.sidebar .active {
+  background: #1e2a78;
+  color: white;
+}
+
+/* 🔷 Content */
+.content {
+  flex: 1;
+  margin-left: 20px;
+}
+
+/* 🔷 Card นายก */
+.main-card {
+  background: white;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.main-card img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.main-card h2 {
+  margin-top: 10px;
+  color: #002855;
+}
+
+/* 🔷 Grid ครม */
+.grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.card {
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.card p {
+  margin: 5px 0;
+}
+
+/* 🔷 Footer */
+footer {
+  background: #c2b59b;
+  padding: 20px;
+  text-align: center;
+  margin-top: 20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- 🔷 Navbar -->
+<div class="navbar">
+  <h1>รัฐบาลไทย</h1>
+  <input type="text" placeholder="ค้นหา...">
+</div>
+
+<!-- 🔷 Header -->
+<div class="header">
+  คณะรัฐมนตรี
+</div>
+
+<div class="container">
+
+  <!-- 🔷 Sidebar -->
+  <div class="sidebar">
+    <button>นายกรัฐมนตรี</button>
+    <button class="active">คณะรัฐมนตรี</button>
+    <button>นโยบายรัฐบาล</button>
+  </div>
+
+  <!-- 🔷 Content -->
+  <div class="content">
+
+    <!-- 🔷 นายก -->
+    <div class="main-card">
+      <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a">
+      <h2>นายกรัฐมนตรี</h2>
+      <p>หัวหน้าฝ่ายบริหารของประเทศ</p>
+    </div>
+
+    <!-- 🔷 ครม -->
+    <div class="grid">
+
+      <div class="card">
+        <img src="https://randomuser.me/api/portraits/men/1.jpg">
+        <p>รองนายกรัฐมนตรี</p>
+      </div>
+
+      <div class="card">
+        <img src="https://randomuser.me/api/portraits/men/2.jpg">
+        <p>รัฐมนตรี</p>
+      </div>
+
+      <div class="card">
+        <img src="https://randomuser.me/api/portraits/men/3.jpg">
+        <p>รัฐมนตรี</p>
+      </div>
+
+      <div class="card">
+        <img src="https://randomuser.me/api/portraits/men/4.jpg">
+        <p>รัฐมนตรี</p>
+      </div>
+
+      <div class="card">
+        <img src="https://randomuser.me/api/portraits/men/5.jpg">
+        <p>รัฐมนตรี</p>
+      </div>
+
+      <div class="card">
+        <img src="https://randomuser.me/api/portraits/men/6.jpg">
+        <p>รัฐมนตรี</p>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- 🔷 Footer -->
+<footer>
+  © เว็บไซต์ตัวอย่างรัฐบาล
+</footer>
+
+</body>
+</html>
