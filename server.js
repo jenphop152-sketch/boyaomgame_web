@@ -101,6 +101,26 @@ app.post('/api/posts', requireAdmin, (req, res) => {
 });
 
 
+// API Endpoint to run RAW SQL (Admin Only)
+app.post('/api/sql', requireAdmin, (req, res) => {
+    const { query } = req.body;
+    if (!query) return res.status(400).json({ error: "No query provided" });
+    
+    // Determine if it's a read or write operation
+    const q = query.trim().toUpperCase();
+    if (q.startsWith('SELECT') || q.startsWith('PRAGMA')) {
+        db.all(query, [], (err, rows) => {
+            if (err) return res.status(500).json({ error: err.message });
+            res.json({ success: true, type: 'select', data: rows });
+        });
+    } else {
+        db.run(query, [], function(err) {
+            if (err) return res.status(500).json({ error: err.message });
+            res.json({ success: true, type: 'run', changes: this.changes, lastID: this.lastID });
+        });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server successfully started! \nOpen your browser and navigate to: http://localhost:${PORT}`);
 });
