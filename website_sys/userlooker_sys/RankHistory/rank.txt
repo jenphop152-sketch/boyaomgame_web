@@ -1,0 +1,44 @@
+-- Normal Ranks --
+OR-1, PVT | Username
+OR-D, NCO | Username
+OR-3, LCPL | Username
+OR-4, CPL | Username
+OR-5, SGT | Username
+OR-6, SM3 | Username
+OR-7, SM2 | Username
+OR-8, SM1 | Username
+OF-(D), ACO | Username or OF-D, ACO | Username
+OF-1a, 2LT | Username
+OF-1b, 1LT | Username
+OF-2, CAPT | Username
+OF-3, MAJ | Username
+OF-4, LTCOL | Username
+OF-5, COL | Username
+OF-6, COLS | Username or OF-6, SRCOL | Username
+OF-7, MAJGEN | Username
+OF-8, LTGEN | Username
+OF-9, GEN | Username
+OF-10, FIM | Username
+SEN | Username
+MP | Username
+DPM | Username
+PM | Username
+CP | Username
+CH | Username
+HMQ | Username
+HMK | Username
+-- Special Player Ranks --
+OF-8, LTGEN, RC | Username
+OF-9, GEN, ADV | Username
+OF-9, GEN, COS | Username
+OF-9, GEN, ACIC | Username
+OF-9, GEN, DCIC | Username
+OF-9, GEN, CIC | Username
+OF-9, GEN, DCDF | Username
+OF-9, GEN, CDF | Username
+OF-10, FIM, COS | Username
+OF-10, FIM, ACIC | Username
+OF-10, FIM, DCIC | Username
+OF-10, FIM, CIC | Username
+OF-10, FIM, DCDF | Username
+OF-10, FIM, CDF | Username

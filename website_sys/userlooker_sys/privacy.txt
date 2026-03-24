@@ -1,0 +1,145 @@
+================================================================================
+                          USERLOOKER PRIVACY POLICY
+================================================================================
+
+Last Updated: December 20, 2025
+
+Welcome to UserLooker. This Privacy Policy explains how we collect, use, and 
+protect information when you use our service.
+
+--------------------------------------------------------------------------------
+1. INFORMATION WE COLLECT
+--------------------------------------------------------------------------------
+
+We collect and process the following types of information:
+
+A. Discord Data
+   - Discord User IDs
+   - Discord Usernames
+   - Discord Nicknames (server-specific)
+   - Message content from public Discord channels
+   - Message timestamps
+
+B. Roblox Data
+   - Roblox Usernames (extracted from Discord nicknames)
+   - Military rank information (as displayed in Discord nicknames)
+
+C. Derived Information
+   - First and last message dates
+   - Total message counts
+   - Number of servers (guilds) where a user was found
+   - Rank change history
+
+--------------------------------------------------------------------------------
+2. HOW WE COLLECT DATA
+--------------------------------------------------------------------------------
+
+Data is collected through DiscordChatExporter (DCE) JSON exports of public 
+Discord server channels. We do not:
+
+   - Access private messages or DMs
+   - Connect to Discord's API in real-time
+   - Collect passwords or authentication tokens
+   - Access any private or restricted channels
+
+All data comes from publicly visible messages in Discord servers.
+
+--------------------------------------------------------------------------------
+3. HOW WE USE YOUR DATA
+--------------------------------------------------------------------------------
+
+We use collected data for the following purposes:
+
+   - Linking Discord accounts to Roblox usernames
+   - Tracking military rank progression over time
+   - Providing user lookup functionality
+   - Maintaining historical records of user activity
+   - Analyzing user patterns with AI (optional feature)
+
+--------------------------------------------------------------------------------
+4. DATA STORAGE AND SECURITY
+--------------------------------------------------------------------------------
+
+   - Data is stored in MongoDB databases
+   - Access is restricted to authorized personnel only
+   - We implement reasonable security measures to protect data
+   - Data is stored on secure servers
+
+--------------------------------------------------------------------------------
+5. DATA RETENTION
+--------------------------------------------------------------------------------
+
+   - User data is retained indefinitely for historical tracking purposes
+   - You may request deletion of your data (see Section 7)
+   - Deleted data may persist in backups for up to 30 days
+
+--------------------------------------------------------------------------------
+6. DATA SHARING
+--------------------------------------------------------------------------------
+
+We do NOT sell, rent, or share your personal data with third parties except:
+
+   - When required by law or legal process
+   - To protect our rights or safety
+   - With your explicit consent
+
+--------------------------------------------------------------------------------
+7. YOUR RIGHTS
+--------------------------------------------------------------------------------
+
+You have the right to:
+
+   A. Access - Request a copy of your stored data
+   B. Correction - Request correction of inaccurate data
+   C. Deletion - Request deletion of your data
+   D. Objection - Object to processing of your data
+
+To exercise these rights, please contact us (see Section 10).
+
+--------------------------------------------------------------------------------
+8. COOKIES AND TRACKING
+--------------------------------------------------------------------------------
+
+Our web application does NOT use:
+
+   - Cookies
+   - Tracking pixels
+   - Analytics services
+   - Third-party advertising
+
+--------------------------------------------------------------------------------
+9. CHILDREN'S PRIVACY
+--------------------------------------------------------------------------------
+
+Our service is not intended for users under the age of 13. We do not knowingly 
+collect data from children under 13. If you believe we have collected data 
+from a child, please contact us immediately.
+
+--------------------------------------------------------------------------------
+10. CONTACT US
+--------------------------------------------------------------------------------
+
+For privacy-related inquiries or to exercise your rights, contact:
+
+   Developer: BoyAomGame
+   Contact: Discord
+
+--------------------------------------------------------------------------------
+11. CHANGES TO THIS POLICY
+--------------------------------------------------------------------------------
+
+We may update this Privacy Policy from time to time. Changes will be posted 
+on this page with an updated "Last Updated" date. Continued use of the service 
+after changes constitutes acceptance of the updated policy.
+
+--------------------------------------------------------------------------------
+12. DISCLAIMER
+--------------------------------------------------------------------------------
+
+UserLooker is a community tool for tracking Discord/Roblox user data. 
+All data processed comes from publicly accessible Discord messages. 
+We are not affiliated with Discord Inc. or Roblox Corporation.
+
+================================================================================
+                          © 2025 UserLooker by BoyAomGame
+================================================================================

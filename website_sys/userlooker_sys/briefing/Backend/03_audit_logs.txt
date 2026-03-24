@@ -1,0 +1,247 @@
+================================================================================
+                        FEATURE BRIEFING: AUDIT LOGS
+================================================================================
+Category: Backend
+Priority: Medium
+Complexity: Medium
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+
+Implement an audit logging system that tracks all significant actions in the
+application. This provides accountability, security monitoring, and helps with
+debugging issues.
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+1. Events to log:
+   
+   AUTHENTICATION:
+   - Login success/failure
+   - Logout
+   - Token refresh
+   - Password change
+   
+   DATA ACCESS:
+   - User search (who searched for whom)
+   - Message view
+   - Statistics access
+   
+   DATA MODIFICATION:
+   - User data extraction
+   - Manual data edits
+   - User deletion
+   - Rank history updates
+   
+   SYSTEM:
+   - API errors (500s)
+   - Rate limit violations
+   - Invalid token attempts
+
+2. Log entry fields:
+   {
+     "timestamp": datetime,
+     "event_type": "login|search|view|modify|error",
+     "action": "specific_action",
+     "actor": "username or IP",
+     "target": "affected resource",
+     "details": { additional_info },
+     "ip_address": "client IP",
+     "user_agent": "browser info",
+     "success": boolean,
+     "error_message": "if applicable"
+   }
+
+3. Storage: MongoDB collection (audit_logs)
+
+4. Retention: 90 days (configurable)
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+- Admin Authentication
+- Middleware support in FastAPI
+
+--------------------------------------------------------------------------------
+IMPLEMENTATION APPROACH
+--------------------------------------------------------------------------------
+
+1. Create audit log collection and model:
+
+```python
+# models/audit_log.py
+from pydantic import BaseModel
+from datetime import datetime
+from typing import Optional, Dict, Any
+
+class AuditLog(BaseModel):
+    timestamp: datetime
+    event_type: str  # auth, access, modify, system
+    action: str
+    actor: str
+    target: Optional[str] = None
+    details: Optional[Dict[str, Any]] = None
+    ip_address: Optional[str] = None
+    user_agent: Optional[str] = None
+    success: bool = True
+    error_message: Optional[str] = None
+```
+
+2. Audit logging utility:
+
+```python
+# utils/audit.py
+from database import db
+from datetime import datetime
+
+async def log_audit(
+    event_type: str,
+    action: str,
+    actor: str,
+    target: str = None,
+    details: dict = None,
+    ip_address: str = None,
+    user_agent: str = None,
+    success: bool = True,
+    error_message: str = None
+):
+    collection = db["audit_logs"]
+    
+    log_entry = {
+        "timestamp": datetime.utcnow(),
+        "event_type": event_type,
+        "action": action,
+        "actor": actor,
+        "target": target,
+        "details": details,
+        "ip_address": ip_address,
+        "user_agent": user_agent,
+        "success": success,
+        "error_message": error_message
+    }
+    
+    await collection.insert_one(log_entry)
+```
+
+3. Middleware for automatic logging:
+
+```python
+from fastapi import Request
+from starlette.middleware.base import BaseHTTPMiddleware
+
+class AuditMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        # Log the request
+        response = await call_next(request)
+        
+        # Log significant actions
+        if request.method in ["POST", "PUT", "DELETE"]:
+            await log_audit(
+                event_type="access",
+                action=f"{request.method} {request.url.path}",
+                actor=request.client.host,
+                ip_address=request.client.host,
+                user_agent=request.headers.get("user-agent"),
+                success=response.status_code < 400
+            )
+        
+        return response
+```
+
+4. Usage in endpoints:
+
+```python
+@app.get("/user/roblox/{username}")
+async def get_user_by_roblox(username: str, request: Request):
+    # Log the search
+    await log_audit(
+        event_type="access",
+        action="user_search",
+        actor=request.client.host,
+        target=username,
+        ip_address=request.client.host
+    )
+    
+    # ... rest of function
+```
+
+5. Admin endpoint to view logs:
+
+```python
+@app.get("/admin/audit-logs")
+async def get_audit_logs(
+    event_type: str = None,
+    actor: str = None,
+    date_from: datetime = None,
+    date_to: datetime = None,
+    page: int = 1,
+    limit: int = 50,
+    current_admin: dict = Depends(get_current_admin)
+):
+    query = {}
+    if event_type:
+        query["event_type"] = event_type
+    if actor:
+        query["actor"] = {"$regex": actor, "$options": "i"}
+    # ... more filters
+    
+    return paginate(db["audit_logs"], query, pagination_params)
+```
+
+--------------------------------------------------------------------------------
+FILES TO CREATE/MODIFY
+--------------------------------------------------------------------------------
+
+NEW FILES:
+  - models/audit_log.py
+  - utils/audit.py
+  - middleware/audit.py
+  - routes/admin.py (audit log endpoints)
+
+MODIFIED FILES:
+  - main.py (add middleware, include router)
+  - routes/auth.py (add login/logout logging)
+  - database.py (add audit_logs collection)
+
+--------------------------------------------------------------------------------
+FRONTEND (Optional)
+--------------------------------------------------------------------------------
+
+- Admin page to view audit logs
+- Filters by event type, date, actor
+- Export to CSV
+
+--------------------------------------------------------------------------------
+DATA CLEANUP
+--------------------------------------------------------------------------------
+
+Scheduled job to delete logs older than retention period:
+
+```python
+# scripts/cleanup_audit_logs.py
+from datetime import datetime, timedelta
+
+async def cleanup_old_logs(retention_days: int = 90):
+    cutoff = datetime.utcnow() - timedelta(days=retention_days)
+    result = await db["audit_logs"].delete_many({"timestamp": {"$lt": cutoff}})
+    print(f"Deleted {result.deleted_count} old audit logs")
+```
+
+--------------------------------------------------------------------------------
+ACCEPTANCE CRITERIA
+--------------------------------------------------------------------------------
+
+[ ] All login attempts are logged
+[ ] User searches are logged
+[ ] Data modifications are logged
+[ ] API errors are logged
+[ ] Admin can view audit logs
+[ ] Filters work correctly
+[ ] Pagination works
+[ ] Old logs are cleaned up
+
+================================================================================

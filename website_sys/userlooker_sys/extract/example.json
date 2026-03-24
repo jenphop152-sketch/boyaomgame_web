@@ -1,0 +1,379 @@
+{
+    "guild": {
+        "id": "1205445782451396648",
+        "name": "[✨] ทหารไทย",
+        "iconUrl": "https://cdn.discordapp.com/icons/1205445782451396648/9535c4864e2c312764b7d7fc9c93bc9b.png?size=512"
+    },
+    "channel": {
+        "id": "1386565726231330887",
+        "type": "GuildNews",
+        "categoryId": "1354679153462476862",
+        "category": "┄ ・\uD83D\uDCD1・ ข้อมูลข่าวสาร  \uD80C\uDC83 ✿",
+        "name": "│₊˚\uD83D\uDC51﹕ประกาศสำคัญ",
+        "topic": null
+    },
+    "dateRange": {
+        "after": null,
+        "before": null
+    },
+    "exportedAt": "2025-10-18T05:34:56.4539436+00:00",
+    "messages": [
+        {
+            "id": "1421513375682400408",
+            "type": "Default",
+            "timestamp": "2025-09-27T15:06:39.204+00:00",
+            "timestampEdited": null,
+            "callEndedTimestamp": null,
+            "isPinned": false,
+            "content": "|| @everyone ||\n\n**โครงสร้างการจัดการหน่วยภายในกองทัพบก (ให้นำไปประกาศในสังกัดตัวเองใหม่ อันนี้อัพเดทล่าสุด)**\n-# บังคับใช้ตั้งเเต่บัดนี้เป็นต้นไป",
+            "author": {
+                "id": "1377281242197659730",
+                "name": "renheya",
+                "discriminator": "0000",
+                "nickname": "OF-9, GEN, ACIC | BouncyBari",
+                "color": "#FF4000",
+                "isBot": false,
+                "roles": [
+                    {
+                        "id": "1354747334528860190",
+                        "name": "[ \uD835\uDC11\uD835\uDC28\uD835\uDC32\uD835\uDC1A\uD835\uDC25 \uD835\uDC13\uD835\uDC21\uD835\uDC1A\uD835\uDC22 \uD835\uDC00\uD835\uDC2B\uD835\uDC26\uD835\uDC32 \uD835\uDC07\uD835\uDC1E\uD835\uDC1A\uD835\uDC1D\uD835\uDC2A\uD835\uDC2E\uD835\uDC1A\uD835\uDC2B\uD835\uDC2D\uD835\uDC1E\uD835\uDC2B\uD835\uDC2C | กองบัญชาการกองทัพบก ]",
+                        "color": "#FF4000",
+                        "position": 57
+                    },
+                    {
+                        "id": "1354739614254108736",
+                        "name": "[ \uD835\uDC06\uD835\uDC1E\uD835\uDC27\uD835\uDC1E\uD835\uDC2B\uD835\uDC1A\uD835\uDC25 \uD835\uDC0C\uD835\uDC22\uD835\uDC25\uD835\uDC22\uD835\uDC2D\uD835\uDC1A\uD835\uDC2B\uD835\uDC32 \uD835\uDC0E\uD835\uDC1F\uD835\uDC1F\uD835\uDC22\uD835\uDC1C\uD835\uDC1E\uD835\uDC2B | นายทหารชั้นนายพล ]",
+                        "color": "#8C17FF",
+                        "position": 52
+                    },
+                    {
+                        "id": "1354675080973520906",
+                        "name": "〝✅ ：\uD835\uDDE9\uD835\uDDF2\uD835\uDDFF\uD835\uDDF6\uD835\uDDF3\uD835\uDE06 (ยืนยันตัวตน)",
+                        "color": "#2ECC71",
+                        "position": 16
+                    },
+                    {
+                        "id": "1354723875614752932",
+                        "name": "°҂: \uD835\uDC13\uD835\uDC22\uD835\uDC1C\uD835\uDC24\uD835\uDC1E\uD835\uDC2D \uD835\uDC12\uD835\uDC2E\uD835\uDC29\uD835\uDC29\uD835\uDC28\uD835\uDC2B\uD835\uDC2D | ผู้ดูแล ･ﾟ",
+                        "color": "#3498DB",
+                        "position": 14
+                    },
+                    {
+                        "id": "1412113199989260501",
+                        "name": "°҂\uD83E\uDE75: ผู้ชาย ･ﾟ",
+                        "color": "#4AB7FF",
+                        "position": 11
+                    }
+                ],
+                "avatarUrl": "https://cdn.discordapp.com/avatars/1377281242197659730/1b99e0142dbac6f8e88257fb209adb66.png?size=512"
+            },
+            "attachments": [
+                {
+                    "id": "1421513375740858491",
+                    "url": "https://cdn.discordapp.com/attachments/1386565726231330887/1421513375740858491/11.jpg?ex=68f455bf&is=68f3043f&hm=1e86e9b4b76421acfd2fe999a5e5336a7e7f7e147fcf17ae5c012364e87746c1&",
+                    "fileName": "11.jpg",
+                    "fileSizeBytes": 183183
+                }
+            ],
+            "embeds": [],
+            "stickers": [],
+            "reactions": [],
+            "mentions": [],
+            "inlineEmojis": []
+        },
+        {
+            "id": "1425376591218999357",
+            "type": "Default",
+            "timestamp": "2025-10-08T06:57:41.563+00:00",
+            "timestampEdited": null,
+            "callEndedTimestamp": null,
+            "isPinned": false,
+            "content": "|| @everyone ||\n\n**โครงสร้างการดูเเลกรม ส่วนของเเม่ทัพ**",
+            "author": {
+                "id": "1192840644348088452",
+                "name": "fifa_7892",
+                "discriminator": "0000",
+                "nickname": "OF-9, GEN, DCDF | Venozeiei_778",
+                "color": "#A37A3D",
+                "isBot": false,
+                "roles": [
+                    {
+                        "id": "1354671604059340812",
+                        "name": "[ \uD835\uDC11\uD835\uDC28\uD835\uDC32\uD835\uDC1A\uD835\uDC25 \uD835\uDC13\uD835\uDC21\uD835\uDC1A\uD835\uDC22 \uD835\uDC07\uD835\uDC1E\uD835\uDC1A\uD835\uDC1D\uD835\uDC2A\uD835\uDC2E\uD835\uDC1A\uD835\uDC2B\uD835\uDC2D\uD835\uDC1E\uD835\uDC2B\uD835\uDC2C | กองบัญชาการกองทัพไทย ]",
+                        "color": "#A37A3D",
+                        "position": 58
+                    },
+                    {
+                        "id": "1354747334528860190",
+                        "name": "[ \uD835\uDC11\uD835\uDC28\uD835\uDC32\uD835\uDC1A\uD835\uDC25 \uD835\uDC13\uD835\uDC21\uD835\uDC1A\uD835\uDC22 \uD835\uDC00\uD835\uDC2B\uD835\uDC26\uD835\uDC32 \uD835\uDC07\uD835\uDC1E\uD835\uDC1A\uD835\uDC1D\uD835\uDC2A\uD835\uDC2E\uD835\uDC1A\uD835\uDC2B\uD835\uDC2D\uD835\uDC1E\uD835\uDC2B\uD835\uDC2C | กองบัญชาการกองทัพบก ]",
+                        "color": "#FF4000",
+                        "position": 57
+                    },
+                    {
+                        "id": "1354739614254108736",
+                        "name": "[ \uD835\uDC06\uD835\uDC1E\uD835\uDC27\uD835\uDC1E\uD835\uDC2B\uD835\uDC1A\uD835\uDC25 \uD835\uDC0C\uD835\uDC22\uD835\uDC25\uD835\uDC22\uD835\uDC2D\uD835\uDC1A\uD835\uDC2B\uD835\uDC32 \uD835\uDC0E\uD835\uDC1F\uD835\uDC1F\uD835\uDC22\uD835\uDC1C\uD835\uDC1E\uD835\uDC2B | นายทหารชั้นนายพล ]",
+                        "color": "#8C17FF",
+                        "position": 52
+                    },
+                    {
+                        "id": "1354748297960620116",
+                        "name": "\uD835\uDC6A\uD835\uDC90\uD835\uDC96\uD835\uDC8F\uD835\uDC95\uD835\uDC86\uD835\uDC93 \uD835\uDC7B\uD835\uDC86\uD835\uDC93\uD835\uDC93\uD835\uDC90\uD835\uDC93\uD835\uDC8A\uD835\uDC9B\uD835\uDC86 \uD835\uDC76\uD835\uDC91\uD835\uDC86\uD835\uDC93\uD835\uDC82\uD835\uDC95\uD835\uDC8A\uD835\uDC90\uD835\uDC8F\uD835\uDC94 \uD835\uDC6A\uD835\uDC86\uD835\uDC8F\uD835\uDC95\uD835\uDC86\uD835\uDC93 | ศูนย์ต่อต้านการก่อการร้ายศากล",
+                        "color": "#FFCD0F",
+                        "position": 43
+                    },
+                    {
+                        "id": "1354757827486290022",
+                        "name": "\uD835\uDFEF\uD835\uDDFF\uD835\uDDF1 \uD835\uDDE6\uD835\uDDFD\uD835\uDDF2\uD835\uDDF0\uD835\uDDF6\uD835\uDDEE\uD835\uDDF9 \uD835\uDDD9\uD835\uDDFC\uD835\uDDFF\uD835\uDDF0\uD835\uDDF2\uD835\uDE00 \uD835\uDDE5\uD835\uDDF2\uD835\uDDF4\uD835\uDDF6\uD835\uDDFA\uD835\uDDF2\uD835\uDDFB\uD835\uDE01 | กรมรบพิเศษที่ 3",
+                        "color": "#FF5D00",
+                        "position": 42
+                    },
+                    {
+                        "id": "1392859164598079498",
+                        "name": "\uD835\uDFEE\uD835\uDDFB\uD835\uDDF1 \uD835\uDDE6\uD835\uDDFD\uD835\uDDF2\uD835\uDDF0\uD835\uDDF6\uD835\uDDEE\uD835\uDDF9 \uD835\uDDD9\uD835\uDDFC\uD835\uDDFF\uD835\uDDF0\uD835\uDDF2\uD835\uDE00 \uD835\uDDE5\uD835\uDDF2\uD835\uDDF4\uD835\uDDF6\uD835\uDDFA\uD835\uDDF2\uD835\uDDFB\uD835\uDE01 | กรมรบพิเศษที่ \uD835\uDFEE",
+                        "color": "#F1C40F",
+                        "position": 41
+                    },
+                    {
+                        "id": "1354751869385445387",
+                        "name": "\uD835\uDFCF\uD835\uDC94\uD835\uDC95 \uD835\uDC7A\uD835\uDC91\uD835\uDC86\uD835\uDC84\uD835\uDC8A\uD835\uDC82\uD835\uDC8D \uD835\uDC6Dо\uD835\uDC93\uD835\uDC84\uD835\uDC86\uD835\uDC94 | กรมรบพิเศษที่ 1",
+                        "color": "#920000",
+                        "position": 40
+                    },
+                    {
+                        "id": "1354746311995555922",
+                        "name": "\uD835\uDC6A\uD835\uDC90\uD835\uDC8E\uD835\uDC8E\uD835\uDC82\uD835\uDC8F\uD835\uDC85 \uD835\uDC82\uD835\uDC8F\uD835\uDC85 \uD835\uDC6E\uD835\uDC86\uD835\uDC8F\uD835\uDC86\uD835\uDC93\uD835\uDC82\uD835\uDC8D \uD835\uDC7A\uD835\uDC95\uD835\uDC82\uD835\uDC87\uD835\uDC87 \uD835\uDC6A\uD835\uDC90\uD835\uDC8D\uD835\uDC8D\uD835\uDC86\uD835\uDC88\uD835\uDC86 | โรงเรียนเสนาธิการทหารบก",
+                        "color": "#C27C0E",
+                        "position": 39
+                    },
+                    {
+                        "id": "1354756123915321346",
+                        "name": "\uD835\uDDE5\uD835\uDDFC\uD835\uDE06\uD835\uDDEE\uD835\uDDF9 \uD835\uDDE0\uD835\uDDF6\uD835\uDDF9\uD835\uDDF6\uD835\uDE01\uD835\uDDEE\uD835\uDDFF\uD835\uDE06 \uD835\uDDD4\uD835\uDDF0\uD835\uDDEE\uD835\uDDF1\uD835\uDDF2\uD835\uDDFA\uD835\uDE06 | โรงเรียนนายร้อยพระจุลจอมเกล้า",
+                        "color": "#FF3C3C",
+                        "position": 38
+                    },
+                    {
+                        "id": "1354757830380490793",
+                        "name": "\uD835\uDDD4\uD835\uDDFF\uD835\uDDFA\uD835\uDE06 \uD835\uDDE7\uD835\uDDFFа\uD835\uDDF6\uD835\uDDFB\uD835\uDDF6\uD835\uDDFB\uD835\uDDF4 & \uD835\uDDD8\uD835\uDDF1\uD835\uDE02\uD835\uDDF0\uD835\uDDEE\uD835\uDE01\uD835\uDDF6\uD835\uDDFC\uD835\uDDFB \uD835\uDDD6\uD835\uDDFC\uD835\uDDFA\uD835\uDDFA\uD835\uDDEE\uD835\uDDFB\uD835\uDDF1 | กรมยุทธศึกษาทหารบก",
+                        "color": "#F1C40F",
+                        "position": 37
+                    },
+                    {
+                        "id": "1354755691629514812",
+                        "name": "\uD835\uDFCF\uD835\uDFCF\uD835\uDC95\uD835\uDC89 \uD835\uDC79\uD835\uDC82\uD835\uDC8F\uD835\uDC88\uD835\uDC86\uD835\uDC93 \uD835\uDC6D\uD835\uDC90\uD835\uDC93\uD835\uDC84\uD835\uDC86 \uD835\uDC79\uD835\uDC86\uD835\uDC88\uD835\uDC8A\uD835\uDC8E\uD835\uDC86\uD835\uDC8F\uD835\uDC95 | กรมทหารพรานที่ 11",
+                        "color": "#5F2900",
+                        "position": 36
+                    },
+                    {
+                        "id": "1354754397069906041",
+                        "name": "\uD835\uDFF0\uD835\uDFF3\uD835\uDE69\uD835\uDE5D \uD835\uDE4D\uD835\uDE56\uD835\uDE63\uD835\uDE5C\uD835\uDE5A\uD835\uDE67 \uD835\uDE41о\uD835\uDE67\uD835\uDE58\uD835\uDE5A\uD835\uDE68 \uD835\uDE4D\uD835\uDE5A\uD835\uDE5C\uD835\uDE5E\uD835\uDE62\uD835\uDE5A\uD835\uDE63\uD835\uDE69 | กรมทหารพรานที่ 47",
+                        "color": "#080808",
+                        "position": 35
+                    },
+                    {
+                        "id": "1354759369883127858",
+                        "name": "\uD835\uDFED\uD835\uDE00\uD835\uDE01 \uD835\uDDDC\uD835\uDDFB\uD835\uDDF3\uD835\uDDEE\uD835\uDDFB\uD835\uDE01\uD835\uDDFF\uD835\uDE06 \uD835\uDDE5\uD835\uDDF2\uD835\uDDF4\uD835\uDDF6\uD835\uDDFA\uD835\uDDF2\uD835\uDDFB\uD835\uDE01, \uD835\uDDDE\uD835\uDDF6\uD835\uDDFB\uD835\uDDF4'\uD835\uDE00 \uD835\uDDE2\uD835\uDE04\uD835\uDDFB \uD835\uDDD5\uD835\uDDFC\uD835\uDDF1\uD835\uDE06\uD835\uDDF4\uD835\uDE02 | กรมทหารราบที่ 1 มหาดเล็ก",
+                        "color": "#FF4BD8",
+                        "position": 34
+                    },
+                    {
+                        "id": "1420422439229325423",
+                        "name": "2nd Cavalry Division | กองพลทหารม้าที่ 2",
+                        "color": "#3498DB",
+                        "position": 33
+                    },
+                    {
+                        "id": "1354759372332470373",
+                        "name": "\uD835\uDFF5\uD835\uDE01\uD835\uDDF5 \uD835\uDDDC\uD835\uDDFB\uD835\uDDF3\uD835\uDDEE\uD835\uDDFB\uD835\uDE01\uD835\uDDFF\uD835\uDE06 \uD835\uDDD7\uD835\uDDF6\uD835\uDE03\uD835\uDDF6\uD835\uDE00\uD835\uDDF6\uD835\uDDFC\uD835\uDDFB | กองพลทหารราบที่ 9",
+                        "color": "#22FF00",
+                        "position": 32
+                    },
+                    {
+                        "id": "1354756126230708356",
+                        "name": "\uD835\uDFEE\uD835\uDFED\uD835\uDE00\uD835\uDE01 \uD835\uDDDC\uD835\uDDFB\uD835\uDDF3\uD835\uDDEE\uD835\uDDFB\uD835\uDE01\uD835\uDDFF\uD835\uDE06 \uD835\uDDE5\uD835\uDDF2\uD835\uDDF4\uD835\uDDF6\uD835\uDDFA\uD835\uDDF2\uD835\uDDFB\uD835\uDE01  | กรมทหารราบที่ 21 รักษาพระองค์",
+                        "color": "#8317FF",
+                        "position": 31
+                    },
+                    {
+                        "id": "1354760733937762445",
+                        "name": "\uD835\uDFEF\uD835\uDFED\uD835\uDE00\uD835\uDE01 \uD835\uDDDC\uD835\uDDFB\uD835\uDDF3\uD835\uDDEE\uD835\uDDFB\uD835\uDE01\uD835\uDDFF\uD835\uDE06 \uD835\uDDE5\uD835\uDDF2\uD835\uDDF4\uD835\uDDF6\uD835\uDDFA\uD835\uDDF2\uD835\uDDFB\uD835\uDE01 | กรมทหารราบที่ 31 รักษาพระองค์",
+                        "color": "#FF0000",
+                        "position": 30
+                    },
+                    {
+                        "id": "1354754702981726250",
+                        "name": "\uD835\uDDD4\uD835\uDDFF\uD835\uDDFA\uD835\uDE06 \uD835\uDDDC\uD835\uDDFB\uD835\uDE01\uD835\uDDF2\uD835\uDDFF\uD835\uDDFB\uD835\uDDEE\uD835\uDDF9 \uD835\uDDD4\uD835\uDE02\uD835\uDDF1\uD835\uDDF6\uD835\uDE01 \uD835\uDDE2\uD835\uDDF3\uD835\uDDF3\uD835\uDDF6\uD835\uDDF0\uD835\uDDF2 | สำนักงานตรวจสอบภายใน",
+                        "color": "#054600",
+                        "position": 29
+                    },
+                    {
+                        "id": "1354762496036311170",
+                        "name": "\uD835\uDDDC\uD835\uDDFB\uD835\uDE00\uD835\uDDFD\uD835\uDDF2\uD835\uDDF0\uD835\uDE01\uD835\uDDFC\uD835\uDDFF \uD835\uDDDA\uD835\uDDF2\uD835\uDDFB\uD835\uDDF2\uD835\uDDFF\uD835\uDDEE\uD835\uDDF9 \uD835\uDDD7\uD835\uDDF2\uD835\uDDFD\uD835\uDDEE\uD835\uDDFF\uD835\uDE01\uD835\uDDFA\uD835\uDDF2\uD835\uDDFB\uD835\uDE01 | กรมจเรทหารบก",
+                        "color": "#E91E63",
+                        "position": 28
+                    },
+                    {
+                        "id": "1354755599610548244",
+                        "name": "\uD835\uDFCF\uD835\uDFCF\uD835\uDC2D\uD835\uDC21 \uD835\uDC0C\uD835\uDC22\uD835\uDC25\uD835\uDC22\uD835\uDC2D\uD835\uDC1A\uD835\uDC2B\uD835\uDC32 \uD835\uDC0F\uD835\uDC28\uD835\uDC25\uD835\uDC22\uD835\uDC1C\uD835\uDC1E \uD835\uDC01\uD835\uDC1A\uD835\uDC2D\uD835\uDC2D\uD835\uDC1A\uD835\uDC25\uD835\uDC22\uD835\uDC28\uD835\uDC27 | กองพันสารวัตรที่ 11",
+                        "color": "#000FFF",
+                        "position": 27
+                    },
+                    {
+                        "id": "1403922317339529301",
+                        "name": "\uD835\uDDD4\uD835\uDDFF\uD835\uDDFA\uD835\uDE06 \uD835\uDDE7\uD835\uDDFF\uD835\uDDEE\uD835\uDDFB\uD835\uDE00\uD835\uDDFD\uD835\uDDFC\uD835\uDDFF\uD835\uDE01 \uD835\uDDD7\uD835\uDDF2\uD835\uDDFD\uD835\uDDEE\uD835\uDDFF\uD835\uDE01\uD835\uDDFA\uD835\uDDF2\uD835\uDDFB\uD835\uDE01 | กรมการขนส่งทหารบก",
+                        "color": "#FF9200",
+                        "position": 26
+                    },
+                    {
+                        "id": "1354757829050765383",
+                        "name": "\uD835\uDDE5\uD835\uDDFC\uD835\uDE06\uD835\uDDEE\uD835\uDDF9 \uD835\uDDE7\uD835\uDDF5\uD835\uDDEE\uD835\uDDF6 \uD835\uDDDD\uD835\uDE02\uD835\uDDF1\uD835\uDDF4\uD835\uDDF2 \uD835\uDDD4\uD835\uDDF1\uD835\uDE03\uD835\uDDFC\uD835\uDDF0\uD835\uDDEE\uD835\uDE01\uD835\uDDF2 \uD835\uDDDA\uD835\uDDF2\uD835\uDDFB\uD835\uDDF2\uD835\uDDFF\uD835\uDDEE\uD835\uDDF9 \uD835\uDDD6\uD835\uDDFC\uD835\uDDFF\uD835\uDDFD\uD835\uDE00 | กรมพระธรรมนูญ",
+                        "color": "#C27C0E",
+                        "position": 25
+                    },
+                    {
+                        "id": "1354749938235473930",
+                        "name": "\uD835\uDC79\uD835\uDC90\uD835\uDC9A\uD835\uDC82\uD835\uDC8D \uD835\uDC7A\uD835\uDC86\uD835\uDC84\uD835\uDC96\uD835\uDC93\uD835\uDC8A\uD835\uDC95\uD835\uDC9A \uD835\uDC6A\uD835\uDC90\uD835\uDC8E\uD835\uDC8E\uD835\uDC82\uD835\uDC8F\uD835\uDC85 | หน่วยบัญชาการถวายความปลอดภัยรักษาพระองค์",
+                        "color": "#3498DB",
+                        "position": 24
+                    },
+                    {
+                        "id": "1354754399771299882",
+                        "name": "\uD835\uDC68\uD835\uDC93\uD835\uDC8E\uD835\uDC9A \uD835\uDC68\uD835\uDC93\uD835\uDC95\uD835\uDC8A\uD835\uDC8D\uD835\uDC8D\uD835\uDC86\uD835\uDC93\uD835\uDC9A \uD835\uDC6B\uD835\uDC8A\uD835\uDC97\uD835\uDC8A\uD835\uDC94\uD835\uDC8A\uD835\uDC90\uD835\uDC8F | กองพลทหารปืนใหญ่",
+                        "color": "#206694",
+                        "position": 23
+                    },
+                    {
+                        "id": "1354756125404430436",
+                        "name": "\uD835\uDDD4\uD835\uDDFF\uD835\uDDFA\uD835\uDE06 \uD835\uDDE0\uD835\uDDF2\uD835\uDDF1\uD835\uDDF6\uD835\uDDF0\uD835\uDDEE\uD835\uDDF9 \uD835\uDDD7\uD835\uDDF2\uD835\uDDFD\uD835\uDDEE\uD835\uDDFF\uD835\uDE01\uD835\uDDFA\uD835\uDDF2\uD835\uDDFB\uD835\uDE01 | กรมแพทย์ทหารบก",
+                        "color": "#14B61A",
+                        "position": 22
+                    },
+                    {
+                        "id": "1354760258614202468",
+                        "name": "\uD835\uDDD9\uD835\uDDF6\uD835\uDDFB\uD835\uDDEE\uD835\uDDFB\uD835\uDDF0\uD835\uDDF2 \uD835\uDDD7\uD835\uDDF2\uD835\uDDFD\uD835\uDDEE\uD835\uDDFF\uD835\uDE01\uD835\uDDFA\uD835\uDDF2\uD835\uDDFB\uD835\uDE01 | กรมการเงินทหารบก",
+                        "color": "#A15203",
+                        "position": 21
+                    },
+                    {
+                        "id": "1354675080973520906",
+                        "name": "〝✅ ：\uD835\uDDE9\uD835\uDDF2\uD835\uDDFF\uD835\uDDF6\uD835\uDDF3\uD835\uDE06 (ยืนยันตัวตน)",
+                        "color": "#2ECC71",
+                        "position": 16
+                    },
+                    {
+                        "id": "1354723875614752932",
+                        "name": "°҂: \uD835\uDC13\uD835\uDC22\uD835\uDC1C\uD835\uDC24\uD835\uDC1E\uD835\uDC2D \uD835\uDC12\uD835\uDC2E\uD835\uDC29\uD835\uDC29\uD835\uDC28\uD835\uDC2B\uD835\uDC2D | ผู้ดูแล ･ﾟ",
+                        "color": "#3498DB",
+                        "position": 14
+                    },
+                    {
+                        "id": "1397438472456896606",
+                        "name": "°҂: \uD835\uDC13\uD835\uDC2B\uD835\uDC1A\uD835\uDC22\uD835\uDC27\uD835\uDC1E\uD835\uDC2B\uD835\uDC2C | ครูฝึก ･ﾟ",
+                        "color": "#35D462",
+                        "position": 13
+                    },
+                    {
+                        "id": "1412113199989260501",
+                        "name": "°҂\uD83E\uDE75: ผู้ชาย ･ﾟ",
+                        "color": "#4AB7FF",
+                        "position": 11
+                    }
+                ],
+                "avatarUrl": "https://cdn.discordapp.com/avatars/1192840644348088452/4b00ef4ff0c6f691f72c6dc916879b06.png?size=512"
+            },
+            "attachments": [
+                {
+                    "id": "1425376590883328010",
+                    "url": "https://cdn.discordapp.com/attachments/1386565726231330887/1425376590883328010/5.png?ex=68f3e325&is=68f291a5&hm=ea6d02c89a7f69e09ed329908ce8d72e50cb5fa633d46dfa1654c2d271c36b0d&",
+                    "fileName": "5.png",
+                    "fileSizeBytes": 375884
+                }
+            ],
+            "embeds": [],
+            "stickers": [],
+            "reactions": [],
+            "mentions": [],
+            "inlineEmojis": []
+        },
+        {
+            "id": "1427090367085412432",
+            "type": "Default",
+            "timestamp": "2025-10-13T00:27:37.57+00:00",
+            "timestampEdited": null,
+            "callEndedTimestamp": null,
+            "isPinned": false,
+            "content": "||@everyone||\n\nแจ้งอัปเดตระบบ มีผลบังคับกับ **ทุกดิส และทุกกรม** ดังนี้:\n\n* มีการกำหนด **3 ตำแหน่งในสายบังคับบัญชา** ให้เป็นตำแหน่ง **ยกเว้นจากการตรวจจับของบอท Wick**\n  เนื่องจากตำแหน่งเหล่านี้มีหน้าที่ **จัดการและควบคุมหลายระบบภายในดิสคอร์ด** ซึ่งจำเป็นต้องใช้อำนาจคำสั่งที่อาจถูกบอทตรวจจับโดยเข้าใจผิด\n* **อย่างไรก็ตาม** หากบุคคลในตำแหน่งเหล่านี้ **พลาดจนถูกบอทยิง** หรือ **มีผู้ใดกระทำการยิง Discord ของกรมหรือดิสใดก็ตาม**\n\n> จะถูกดำเนินการ **Set Zero ทันที — มีผลทุกดิส ทุกกรม ไม่มีข้อยกเว้น**\n\nขอให้สายบังคับบัญชาและทุกหน่วย **ใช้อำนาจอย่างมีความระมัดระวัง** เพื่อรักษาความปลอดภัยและระเบียบของระบบรวม",
+            "author": {
+                "id": "840090253272416257",
+                "name": "yarispammer",
+                "discriminator": "0000",
+                "nickname": "OF-9, GEN, ACIC | ijenexfnry9",
+                "color": "#FF4000",
+                "isBot": false,
+                "roles": [
+                    {
+                        "id": "1354747334528860190",
+                        "name": "[ \uD835\uDC11\uD835\uDC28\uD835\uDC32\uD835\uDC1A\uD835\uDC25 \uD835\uDC13\uD835\uDC21\uD835\uDC1A\uD835\uDC22 \uD835\uDC00\uD835\uDC2B\uD835\uDC26\uD835\uDC32 \uD835\uDC07\uD835\uDC1E\uD835\uDC1A\uD835\uDC1D\uD835\uDC2A\uD835\uDC2E\uD835\uDC1A\uD835\uDC2B\uD835\uDC2D\uD835\uDC1E\uD835\uDC2B\uD835\uDC2C | กองบัญชาการกองทัพบก ]",
+                        "color": "#FF4000",
+                        "position": 57
+                    },
+                    {
+                        "id": "1354739614254108736",
+                        "name": "[ \uD835\uDC06\uD835\uDC1E\uD835\uDC27\uD835\uDC1E\uD835\uDC2B\uD835\uDC1A\uD835\uDC25 \uD835\uDC0C\uD835\uDC22\uD835\uDC25\uD835\uDC22\uD835\uDC2D\uD835\uDC1A\uD835\uDC2B\uD835\uDC32 \uD835\uDC0E\uD835\uDC1F\uD835\uDC1F\uD835\uDC22\uD835\uDC1C\uD835\uDC1E\uD835\uDC2B | นายทหารชั้นนายพล ]",
+                        "color": "#8C17FF",
+                        "position": 52
+                    },
+                    {
+                        "id": "1354746311995555922",
+                        "name": "\uD835\uDC6A\uD835\uDC90\uD835\uDC8E\uD835\uDC8E\uD835\uDC82\uD835\uDC8F\uD835\uDC85 \uD835\uDC82\uD835\uDC8F\uD835\uDC85 \uD835\uDC6E\uD835\uDC86\uD835\uDC8F\uD835\uDC86\uD835\uDC93\uD835\uDC82\uD835\uDC8D \uD835\uDC7A\uD835\uDC95\uD835\uDC82\uD835\uDC87\uD835\uDC87 \uD835\uDC6A\uD835\uDC90\uD835\uDC8D\uD835\uDC8D\uD835\uDC86\uD835\uDC88\uD835\uDC86 | โรงเรียนเสนาธิการทหารบก",
+                        "color": "#C27C0E",
+                        "position": 39
+                    },
+                    {
+                        "id": "1354756123915321346",
+                        "name": "\uD835\uDDE5\uD835\uDDFC\uD835\uDE06\uD835\uDDEE\uD835\uDDF9 \uD835\uDDE0\uD835\uDDF6\uD835\uDDF9\uD835\uDDF6\uD835\uDE01\uD835\uDDEE\uD835\uDDFF\uD835\uDE06 \uD835\uDDD4\uD835\uDDF0\uD835\uDDEE\uD835\uDDF1\uD835\uDDF2\uD835\uDDFA\uD835\uDE06 | โรงเรียนนายร้อยพระจุลจอมเกล้า",
+                        "color": "#FF3C3C",
+                        "position": 38
+                    },
+                    {
+                        "id": "1354675080973520906",
+                        "name": "〝✅ ：\uD835\uDDE9\uD835\uDDF2\uD835\uDDFF\uD835\uDDF6\uD835\uDDF3\uD835\uDE06 (ยืนยันตัวตน)",
+                        "color": "#2ECC71",
+                        "position": 16
+                    },
+                    {
+                        "id": "1354741100887281754",
+                        "name": "°҂: \uD835\uDC00\uD835\uDC27\uD835\uDC27\uD835\uDC28\uD835\uDC2E\uD835\uDC27\uD835\uDC1C\uD835\uDC1E\uD835\uDC26\uD835\uDC1E\uD835\uDC27\uD835\uDC2D \uD835\uDC0F\uD835\uDC1E\uD835\uDC2B\uD835\uDC26\uD835\uDC22\uD835\uDC2C\uD835\uDC2C\uD835\uDC22\uD835\uDC28\uD835\uDC27 | อนุญาติให้ประกาศได้ ･ﾟ",
+                        "color": "#F459F6",
+                        "position": 15
+                    },
+                    {
+                        "id": "1354723875614752932",
+                        "name": "°҂: \uD835\uDC13\uD835\uDC22\uD835\uDC1C\uD835\uDC24\uD835\uDC1E\uD835\uDC2D \uD835\uDC12\uD835\uDC2E\uD835\uDC29\uD835\uDC29\uD835\uDC28\uD835\uDC2B\uD835\uDC2D | ผู้ดูแล ･ﾟ",
+                        "color": "#3498DB",
+                        "position": 14
+                    },
+                    {
+                        "id": "1397438472456896606",
+                        "name": "°҂: \uD835\uDC13\uD835\uDC2B\uD835\uDC1A\uD835\uDC22\uD835\uDC27\uD835\uDC1E\uD835\uDC2B\uD835\uDC2C | ครูฝึก ･ﾟ",
+                        "color": "#35D462",
+                        "position": 13
+                    },
+                    {
+                        "id": "1412113199989260501",
+                        "name": "°҂\uD83E\uDE75: ผู้ชาย ･ﾟ",
+                        "color": "#4AB7FF",
+                        "position": 11
+                    }
+                ],
+                "avatarUrl": "https://cdn.discordapp.com/avatars/840090253272416257/2a41f912b242b4a49907d0401922bb09.png?size=512"
+            },
+            "attachments": [],
+            "embeds": [],
+            "stickers": [],
+            "reactions": [],
+            "mentions": [],
+            "inlineEmojis": []
+        }
+    ],
+    "messageCount": 3
+}

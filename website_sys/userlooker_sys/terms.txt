@@ -1,0 +1,203 @@
+================================================================================
+                         USERLOOKER TERMS OF SERVICE
+================================================================================
+
+Last Updated: December 20, 2025
+
+Please read these Terms of Service ("Terms") carefully before using UserLooker.
+By accessing or using our service, you agree to be bound by these Terms.
+
+--------------------------------------------------------------------------------
+1. ACCEPTANCE OF TERMS
+--------------------------------------------------------------------------------
+
+By accessing or using UserLooker, you agree to:
+
+   - These Terms of Service
+   - Our Privacy Policy
+   - All applicable laws and regulations
+
+If you do not agree with any part of these Terms, you may not use our service.
+
+--------------------------------------------------------------------------------
+2. DESCRIPTION OF SERVICE
+--------------------------------------------------------------------------------
+
+UserLooker is a Discord user data lookup and tracking service that:
+
+   - Links Discord accounts to Roblox usernames
+   - Tracks military rank changes over time
+   - Provides searchable user information
+   - Stores message history for analysis
+
+The service is provided "as is" and "as available" without warranties.
+
+--------------------------------------------------------------------------------
+3. ELIGIBILITY
+--------------------------------------------------------------------------------
+
+To use UserLooker, you must:
+
+   - Be at least 13 years of age
+   - Have the legal capacity to enter into a binding agreement
+   - Not be prohibited from using the service under applicable laws
+
+--------------------------------------------------------------------------------
+4. ACCEPTABLE USE
+--------------------------------------------------------------------------------
+
+You agree NOT to use UserLooker to:
+
+   A. Harassment
+      - Stalk, harass, or intimidate any individual
+      - Dox or expose personal information maliciously
+      - Target users for discrimination or abuse
+
+   B. Illegal Activities
+      - Engage in any unlawful activities
+      - Violate Discord's Terms of Service
+      - Violate Roblox's Terms of Service
+
+   C. Technical Abuse
+      - Attempt to hack, exploit, or disrupt the service
+      - Use automated tools to scrape data excessively
+      - Overwhelm servers with excessive requests (DoS)
+      - Reverse engineer or decompile the application
+
+   D. Misrepresentation
+      - Impersonate others or misrepresent your identity
+      - Provide false information
+      - Create fake or misleading data entries
+
+--------------------------------------------------------------------------------
+5. USER RESPONSIBILITIES
+--------------------------------------------------------------------------------
+
+You are responsible for:
+
+   - Your use of the service and any consequences thereof
+   - Maintaining the confidentiality of any access credentials
+   - Reporting any security vulnerabilities or misuse
+   - Using data obtained from the service responsibly and ethically
+
+--------------------------------------------------------------------------------
+6. INTELLECTUAL PROPERTY
+--------------------------------------------------------------------------------
+
+   - UserLooker and its original content are owned by BoyAomGame
+   - The source code is available on GitHub under applicable licenses
+   - User-submitted data remains the property of respective users
+   - Discord and Roblox are trademarks of their respective owners
+
+--------------------------------------------------------------------------------
+7. DATA ACCURACY
+--------------------------------------------------------------------------------
+
+   - We strive to maintain accurate data but cannot guarantee accuracy
+   - Data is extracted from Discord exports and may contain errors
+   - Rank and username information reflects historical snapshots
+   - We are not responsible for decisions made based on this data
+
+--------------------------------------------------------------------------------
+8. LIMITATION OF LIABILITY
+--------------------------------------------------------------------------------
+
+TO THE MAXIMUM EXTENT PERMITTED BY LAW:
+
+   - UserLooker is provided "AS IS" without warranties of any kind
+   - We do not guarantee uninterrupted or error-free service
+   - We are not liable for any damages arising from use of the service
+   - Our total liability shall not exceed the amount you paid (if any)
+
+This includes but is not limited to:
+   - Direct, indirect, incidental, or consequential damages
+   - Loss of data, profits, or business opportunities
+   - Personal injury or property damage
+
+--------------------------------------------------------------------------------
+9. INDEMNIFICATION
+--------------------------------------------------------------------------------
+
+You agree to indemnify and hold harmless UserLooker, its developer, and 
+affiliates from any claims, damages, or expenses arising from:
+
+   - Your use of the service
+   - Your violation of these Terms
+   - Your violation of any third-party rights
+   - Any content you submit or transmit through the service
+
+--------------------------------------------------------------------------------
+10. TERMINATION
+--------------------------------------------------------------------------------
+
+We reserve the right to:
+
+   - Suspend or terminate access at any time, for any reason
+   - Remove or modify any content or data
+   - Discontinue the service with or without notice
+
+Upon termination:
+   - Your right to use the service ceases immediately
+   - We may delete your data (subject to legal requirements)
+   - Provisions that should survive termination will remain in effect
+
+--------------------------------------------------------------------------------
+11. CHANGES TO TERMS
+--------------------------------------------------------------------------------
+
+We may modify these Terms at any time by:
+
+   - Posting the revised Terms on this page
+   - Updating the "Last Updated" date
+   - Notifying users of material changes (when practical)
+
+Continued use after changes constitutes acceptance of the new Terms.
+
+--------------------------------------------------------------------------------
+12. THIRD-PARTY SERVICES
+--------------------------------------------------------------------------------
+
+UserLooker may interact with third-party services including:
+
+   - Discord (data source)
+   - Roblox (username references)
+   - MongoDB (data storage)
+   - Backblaze B2 (optional cloud storage)
+   - Google Gemini AI (optional analysis)
+
+We are not responsible for the practices of these third parties. Please review 
+their respective terms and privacy policies.
+
+--------------------------------------------------------------------------------
+13. GOVERNING LAW
+--------------------------------------------------------------------------------
+
+These Terms shall be governed by and construed in accordance with applicable 
+laws. Any disputes shall be resolved through appropriate legal channels.
+
+--------------------------------------------------------------------------------
+14. SEVERABILITY
+--------------------------------------------------------------------------------
+
+If any provision of these Terms is found unenforceable, the remaining 
+provisions shall continue in full force and effect.
+
+--------------------------------------------------------------------------------
+15. ENTIRE AGREEMENT
+--------------------------------------------------------------------------------
+
+These Terms, together with our Privacy Policy, constitute the entire agreement 
+between you and UserLooker regarding use of the service.
+
+--------------------------------------------------------------------------------
+16. CONTACT
+--------------------------------------------------------------------------------
+
+For questions about these Terms of Service, please contact:
+
+   Developer: BoyAomGame
+   Contact: Discord
+
+================================================================================
+                          © 2025 UserLooker by BoyAomGame
+================================================================================

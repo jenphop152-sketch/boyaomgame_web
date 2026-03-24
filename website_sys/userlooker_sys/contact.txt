@@ -1,0 +1,97 @@
+================================================================================
+                            CONTACT USERLOOKER
+================================================================================
+
+We'd love to hear from you! Whether you have questions, feedback, or need 
+support, here's how you can reach us.
+
+--------------------------------------------------------------------------------
+                              DEVELOPER INFO
+--------------------------------------------------------------------------------
+
+   Developer:     BoyAomGame
+   Project:       UserLooker
+   Contact:       Discord
+
+--------------------------------------------------------------------------------
+                              GET IN TOUCH
+--------------------------------------------------------------------------------
+
+DISCORD (Primary Contact)
+-------------------------
+   For bug reports, feature requests, or technical questions, please reach out 
+   to the developer via Discord.
+
+   Developer: BoyAomGame
+
+--------------------------------------------------------------------------------
+                            TYPES OF INQUIRIES
+--------------------------------------------------------------------------------
+
+🐛 BUG REPORTS
+   Found a bug? Please contact us with:
+   - Description of the problem
+   - Steps to reproduce
+   - Expected vs actual behavior
+   - Screenshots (if applicable)
+
+💡 FEATURE REQUESTS
+   Have an idea to improve UserLooker? We welcome suggestions!
+   - Describe your idea and its use case
+   - Explain how it would benefit users
+
+🔐 PRIVACY REQUESTS
+   For privacy-related requests (data access, correction, deletion):
+   - Contact the developer directly via Discord
+   - Include your Discord User ID for verification
+   - Specify the type of request (access/correction/deletion)
+
+⚠️ SECURITY ISSUES
+   Found a security vulnerability?
+   - Please contact the developer directly and privately
+   - Do not share vulnerability details publicly
+   - Allow time for the issue to be resolved before any disclosure
+
+❓ GENERAL QUESTIONS
+   For general questions about the project:
+   - Check if your question has been answered previously
+   - Contact the developer via Discord
+
+--------------------------------------------------------------------------------
+                            RESPONSE TIME
+--------------------------------------------------------------------------------
+
+We aim to respond to inquiries within:
+
+   - Bug Reports:        1-3 business days
+   - Feature Requests:   3-7 business days  
+   - Privacy Requests:   1-5 business days
+   - Security Issues:    24-48 hours
+
+Note: Response times may vary based on complexity and developer availability.
+
+--------------------------------------------------------------------------------
+                              ABOUT THE PROJECT
+--------------------------------------------------------------------------------
+
+UserLooker is a private, closed-source project developed by BoyAomGame. 
+The service is designed for personal/organization use and is not publicly 
+available for distribution or modification.
+
+--------------------------------------------------------------------------------
+                              ACKNOWLEDGMENTS
+--------------------------------------------------------------------------------
+
+UserLooker is built with the following technologies:
+
+   - FastAPI - Modern Python web framework
+   - React - JavaScript UI library
+   - MongoDB - NoSQL database
+   - Vite - Next generation frontend tooling
+
+Thank you to all users who make this project better through their feedback!
+
+================================================================================
+                          © 2025 UserLooker by BoyAomGame
+                            Made With ❤️ for the Community
+================================================================================

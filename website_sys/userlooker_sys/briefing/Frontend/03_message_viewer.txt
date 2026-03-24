@@ -1,0 +1,77 @@
+================================================================================
+                      FEATURE BRIEFING: MESSAGE VIEWER
+================================================================================
+Category: Frontend
+Priority: Medium
+Complexity: Medium
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+
+Create a message viewer component that displays a user's Discord message history.
+The backend already provides this data via /user/discord/{id}/messages endpoint.
+This feature allows admins to review what messages a user has sent.
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+1. Display messages in reverse chronological order (newest first)
+
+2. For each message show:
+   - Timestamp (formatted nicely)
+   - Message content
+   - Guild/Server name (if available)
+   - Channel name (if available)
+   - Attachments indicator (if any)
+
+3. Pagination:
+   - Load 50 messages at a time
+   - "Load More" button for additional messages
+
+4. Search/Filter within messages:
+   - Filter by keyword
+   - Filter by date range
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+- Requires API: GET /user/discord/{discord_id}/messages
+- Need to get Discord ID from the user profile first
+- May need API enhancement for better message filtering
+
+--------------------------------------------------------------------------------
+UI/UX CONSIDERATIONS
+--------------------------------------------------------------------------------
+
+- Messages should be displayed in a chat-like format
+- Long messages should be truncated with "Show More"
+- Timestamps in relative format ("2 hours ago")
+- Empty state for users with no messages
+- Warning about sensitive content
+
+--------------------------------------------------------------------------------
+FILES TO CREATE/MODIFY
+--------------------------------------------------------------------------------
+
+NEW FILES:
+  - frontend/src/components/MessageViewer.jsx
+  - frontend/src/components/MessageCard.jsx
+
+MODIFIED FILES:
+  - frontend/src/components/Result.jsx (add tab/link to messages)
+
+--------------------------------------------------------------------------------
+ACCEPTANCE CRITERIA
+--------------------------------------------------------------------------------
+
+[ ] Messages display correctly with all fields
+[ ] Pagination works (Load More)
+[ ] Proper loading and error states
+[ ] Empty state when no messages
+[ ] Timestamp formatting is user-friendly
+[ ] Long messages can be expanded
+
+================================================================================

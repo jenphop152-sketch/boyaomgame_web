@@ -1,0 +1,133 @@
+================================================================================
+                       FEATURE BRIEFING: RATE LIMITING
+================================================================================
+Category: API
+Priority: High
+Complexity: Medium
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+
+Implement rate limiting to protect the API from abuse, prevent denial-of-service
+attacks, and ensure fair usage across all users.
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+1. Rate limit tiers:
+
+   ANONYMOUS (no auth):
+   - 30 requests per minute
+   - 500 requests per hour
+   
+   AUTHENTICATED USER:
+   - 100 requests per minute
+   - 2000 requests per hour
+   
+   ADMIN:
+   - 500 requests per minute
+   - Unlimited per hour
+
+2. Rate limit headers in response:
+   - X-RateLimit-Limit: Request limit
+   - X-RateLimit-Remaining: Requests remaining
+   - X-RateLimit-Reset: Timestamp when limit resets
+   - Retry-After: Seconds until retry (when limited)
+
+3. Response when rate limited:
+   - HTTP 429 Too Many Requests
+   - JSON body with error message and retry info
+
+4. Per-IP rate limiting (or per-token if authenticated)
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+- Redis (recommended) or in-memory store
+- slowapi library (FastAPI rate limiting)
+
+--------------------------------------------------------------------------------
+IMPLEMENTATION APPROACH
+--------------------------------------------------------------------------------
+
+1. Install slowapi:
+   pip install slowapi
+
+2. Configure rate limiter:
+
+```python
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+
+limiter = Limiter(key_func=get_remote_address)
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+@app.get("/user/roblox/{username}")
+@limiter.limit("30/minute")
+async def get_user_by_roblox(request: Request, username: str):
+    ...
+```
+
+3. For Redis backend (production):
+
+```python
+from slowapi import Limiter
+from slowapi.util import get_remote_address
+
+limiter = Limiter(
+    key_func=get_remote_address,
+    storage_uri="redis://localhost:6379"
+)
+```
+
+--------------------------------------------------------------------------------
+FILES TO CREATE/MODIFY
+--------------------------------------------------------------------------------
+
+NEW FILES:
+  - utils/rate_limiter.py
+  - middleware/rate_limit.py
+
+MODIFIED FILES:
+  - main.py (add rate limit decorators)
+  - requirements.txt (add slowapi, redis)
+
+--------------------------------------------------------------------------------
+RATE LIMIT RESPONSE EXAMPLE
+--------------------------------------------------------------------------------
+
+HTTP 429 Too Many Requests
+
+Headers:
+  X-RateLimit-Limit: 30
+  X-RateLimit-Remaining: 0
+  X-RateLimit-Reset: 1703089200
+  Retry-After: 45
+
+Body:
+{
+  "error": "rate_limit_exceeded",
+  "message": "Rate limit exceeded. Please retry in 45 seconds.",
+  "limit": 30,
+  "window": "1 minute",
+  "retryAfter": 45
+}
+
+--------------------------------------------------------------------------------
+ACCEPTANCE CRITERIA
+--------------------------------------------------------------------------------
+
+[ ] Anonymous rate limiting works (30/min)
+[ ] Rate limit headers present in all responses
+[ ] 429 response when limit exceeded
+[ ] Limit resets after window
+[ ] Redis storage works (optional)
+[ ] Different limits for different user types
+[ ] Admin bypass works
+
+================================================================================

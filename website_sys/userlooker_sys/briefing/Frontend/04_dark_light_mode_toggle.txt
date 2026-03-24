@@ -1,0 +1,91 @@
+================================================================================
+                  FEATURE BRIEFING: DARK/LIGHT MODE TOGGLE
+================================================================================
+Category: Frontend
+Priority: Low
+Complexity: Low
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+
+Add a theme toggle that allows users to switch between dark mode (current) and
+light mode. The preference should persist across sessions using localStorage.
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+1. Toggle button in header/footer area
+   - Sun icon for light mode
+   - Moon icon for dark mode
+
+2. Color themes:
+   
+   DARK MODE (Current):
+   - Background: #0f172a
+   - Cards: #1e293b
+   - Text: white/rgba(255,255,255,0.87)
+   - Accent: #646cff
+   
+   LIGHT MODE:
+   - Background: #f8fafc
+   - Cards: #ffffff
+   - Text: #1e293b
+   - Accent: #4f46e5
+
+3. Smooth transition between themes (0.3s)
+
+4. System preference detection (prefers-color-scheme)
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+- None (pure frontend feature)
+
+--------------------------------------------------------------------------------
+UI/UX CONSIDERATIONS
+--------------------------------------------------------------------------------
+
+- Toggle should be easily accessible
+- Transition should be smooth, not jarring
+- All components must support both themes
+- Icons should clearly indicate current/next state
+
+--------------------------------------------------------------------------------
+FILES TO CREATE/MODIFY
+--------------------------------------------------------------------------------
+
+NEW FILES:
+  - frontend/src/components/ThemeToggle.jsx
+  - frontend/src/context/ThemeContext.jsx
+
+MODIFIED FILES:
+  - frontend/src/index.css (add CSS variables for themes)
+  - frontend/src/App.jsx (wrap with ThemeProvider)
+  - frontend/src/components/Home.jsx (use theme variables)
+  - frontend/src/components/Result.jsx (use theme variables)
+  - frontend/src/components/Footer.jsx (add toggle, use theme)
+
+--------------------------------------------------------------------------------
+IMPLEMENTATION APPROACH
+--------------------------------------------------------------------------------
+
+1. Use CSS custom properties (variables) for all colors
+2. Create ThemeContext with React Context API
+3. Toggle class on document.body ('dark' or 'light')
+4. Store preference in localStorage
+
+--------------------------------------------------------------------------------
+ACCEPTANCE CRITERIA
+--------------------------------------------------------------------------------
+
+[ ] Toggle button visible and functional
+[ ] Both themes look good and are readable
+[ ] Smooth transition between themes
+[ ] Preference persists on refresh
+[ ] System preference detected on first visit
+[ ] All pages respect theme
+
+================================================================================

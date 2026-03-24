@@ -1,0 +1,21 @@
+[USER ID] [TEXT] [TIMESTAMP]
+EX.
+123456789 Hello World [TIMESTAMP PLACEHOLDER]
+
+EXPECTED GEMINI RESPONSE
+
+{ #gemini detected as known
+    "user_id": "123456789",
+    "username": "Player123",
+    "rank": "OR-1, PVT",
+    "classified": "known",
+    "confident": 96 (can be from 0-100)
+}
+
+{ #gemini detected as unknown
+    "user_id": "123456789",
+    "username": null,
+    "rank": null,
+    "classified": "unknown",
+    "confident": null,
+}

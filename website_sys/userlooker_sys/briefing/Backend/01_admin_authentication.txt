@@ -1,0 +1,158 @@
+================================================================================
+                   FEATURE BRIEFING: ADMIN AUTHENTICATION
+================================================================================
+Category: Backend
+Priority: Critical
+Complexity: High
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+
+Implement a secure authentication system to protect admin-only endpoints. This
+is the foundation for the Login System and required for Statistics Dashboard,
+Audit Logs, and other admin features.
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+1. Authentication method: JWT (JSON Web Tokens)
+   - Access token: Short-lived (15 min - 1 hour)
+   - Refresh token: Long-lived (7 days)
+
+2. Token payload:
+   {
+     "sub": "admin_username",
+     "role": "admin",
+     "iat": issued_at_timestamp,
+     "exp": expiry_timestamp
+   }
+
+3. Protected endpoints:
+   - GET /admin/* (all admin endpoints)
+   - DELETE /* (any delete operations)
+   - POST /extract/* (data extraction endpoints)
+
+4. Public endpoints (no auth):
+   - GET /user/roblox/{username}
+   - GET /user/discord/{id}
+   - GET / (health check)
+
+5. Password hashing: bcrypt with salt
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+- python-jose (JWT handling)
+- passlib (password hashing)
+- bcrypt (hashing algorithm)
+
+--------------------------------------------------------------------------------
+IMPLEMENTATION APPROACH
+--------------------------------------------------------------------------------
+
+1. Install dependencies:
+   pip install python-jose[cryptography] passlib[bcrypt]
+
+2. Create auth utilities:
+
+```python
+# utils/auth.py
+from jose import JWTError, jwt
+from passlib.context import CryptContext
+from datetime import datetime, timedelta
+
+SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 60
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+def verify_password(plain_password, hashed_password):
+    return pwd_context.verify(plain_password, hashed_password)
+
+def get_password_hash(password):
+    return pwd_context.hash(password)
+
+def create_access_token(data: dict, expires_delta: timedelta = None):
+    to_encode = data.copy()
+    if expires_delta:
+        expire = datetime.utcnow() + expires_delta
+    else:
+        expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    to_encode.update({"exp": expire})
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+```
+
+3. Create auth dependency:
+
+```python
+from fastapi import Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+
+async def get_current_admin(token: str = Depends(oauth2_scheme)):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username: str = payload.get("sub")
+        role: str = payload.get("role")
+        if username is None or role != "admin":
+            raise credentials_exception
+    except JWTError:
+        raise credentials_exception
+    return {"username": username, "role": role}
+```
+
+4. Protect endpoints:
+
+```python
+@app.get("/admin/statistics")
+async def get_stats(current_admin: dict = Depends(get_current_admin)):
+    # Only authenticated admins can access
+    ...
+```
+
+--------------------------------------------------------------------------------
+FILES TO CREATE/MODIFY
+--------------------------------------------------------------------------------
+
+NEW FILES:
+  - utils/auth.py
+  - models/user.py (admin user model)
+  - middleware/auth.py
+
+MODIFIED FILES:
+  - main.py (add protected endpoints)
+  - requirements.txt (add dependencies)
+  - .env (add JWT_SECRET_KEY)
+
+--------------------------------------------------------------------------------
+ENVIRONMENT VARIABLES
+--------------------------------------------------------------------------------
+
+JWT_SECRET_KEY=your-super-secret-key-change-in-production
+JWT_REFRESH_SECRET_KEY=another-secret-key
+ACCESS_TOKEN_EXPIRE_MINUTES=60
+REFRESH_TOKEN_EXPIRE_DAYS=7
+
+--------------------------------------------------------------------------------
+ACCEPTANCE CRITERIA
+--------------------------------------------------------------------------------
+
+[ ] JWT tokens generated correctly
+[ ] Token validation works
+[ ] Protected endpoints reject unauthorized access
+[ ] Public endpoints still work without auth
+[ ] Password hashing is secure
+[ ] Token refresh works
+[ ] Expired tokens are rejected
+
+================================================================================

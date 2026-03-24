@@ -1,0 +1,114 @@
+================================================================================
+                   FEATURE BRIEFING: STATISTICS DASHBOARD
+================================================================================
+Category: Frontend
+Priority: High
+Complexity: High
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+
+Create an admin dashboard page that shows aggregate statistics across all data
+in the system. This gives administrators a bird's eye view of the data.
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+1. Key Metrics (Cards):
+   - Total known users
+   - Total unknown users
+   - Total messages stored
+   - Total guilds tracked
+   - Total rank changes recorded
+   - Last data extraction date
+
+2. Charts:
+   - User growth over time
+   - Messages per day/week (recent)
+   - Rank distribution (pie chart)
+   - Top 10 most active users
+   - Top 10 largest guilds
+
+3. Recent Activity Feed:
+   - Last 10 rank changes
+   - Last 10 new users added
+   - Last extraction results
+
+4. Search stats:
+   - Most searched users (if tracked)
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+- Requires NEW API: GET /admin/statistics
+- May require admin authentication (depends on security requirements)
+
+--------------------------------------------------------------------------------
+DATA STRUCTURE NEEDED
+--------------------------------------------------------------------------------
+
+API Response format:
+{
+  "counts": {
+    "knownUsers": 1250,
+    "unknownUsers": 342,
+    "confirmedUnknown": 89,
+    "totalMessages": 145678,
+    "totalGuilds": 12,
+    "rankChanges": 856
+  },
+  "charts": {
+    "userGrowth": [...],
+    "messageActivity": [...],
+    "rankDistribution": [...],
+    "topUsers": [...],
+    "topGuilds": [...]
+  },
+  "recentActivity": {
+    "rankChanges": [...],
+    "newUsers": [...]
+  },
+  "lastExtraction": "2025-12-20T15:30:00Z"
+}
+
+--------------------------------------------------------------------------------
+UI/UX CONSIDERATIONS
+--------------------------------------------------------------------------------
+
+- Dashboard should load quickly
+- Use caching for expensive queries
+- Auto-refresh option (every 5 min)
+- Export data as CSV/JSON option
+- Print-friendly layout
+
+--------------------------------------------------------------------------------
+FILES TO CREATE/MODIFY
+--------------------------------------------------------------------------------
+
+NEW FILES:
+  - frontend/src/pages/Dashboard.jsx
+  - frontend/src/components/StatCard.jsx
+  - frontend/src/components/charts/UserGrowthChart.jsx
+  - frontend/src/components/charts/RankDistributionChart.jsx
+  - frontend/src/components/RecentActivityFeed.jsx
+
+MODIFIED FILES:
+  - frontend/src/App.jsx (add /admin/dashboard route)
+  - frontend/src/components/Footer.jsx (add dashboard link for admins)
+
+--------------------------------------------------------------------------------
+ACCEPTANCE CRITERIA
+--------------------------------------------------------------------------------
+
+[ ] All metric cards display correct numbers
+[ ] Charts render with real data
+[ ] Recent activity feed updates
+[ ] Page is responsive
+[ ] Auto-refresh works
+[ ] Loading states for each section
+[ ] Admin-only access (if auth implemented)
+
+================================================================================

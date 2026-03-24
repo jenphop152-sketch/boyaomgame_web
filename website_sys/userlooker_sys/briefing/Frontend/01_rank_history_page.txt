@@ -1,0 +1,75 @@
+================================================================================
+                     FEATURE BRIEFING: RANK HISTORY PAGE
+================================================================================
+Category: Frontend
+Priority: High
+Complexity: Medium
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+
+Create a new page that displays a user's rank progression over time. This page
+will show all rank changes for a specific Roblox user, allowing viewers to see
+their military career progression within the organization.
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+1. New route: /user/{robloxUsername}/rank-history
+
+2. Display for each rank change:
+   - Previous rank (or "Initial" if first record)
+   - New rank
+   - Date/time of change
+   - Time spent at previous rank (calculated)
+
+3. Visual timeline representation
+   - Vertical timeline with markers
+   - Color-coded by rank tier (enlisted, officer, special)
+
+4. Navigation link from Result.jsx page
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+- Requires API endpoint: GET /user/roblox/{username}/rank-history
+- Uses existing rank_history MongoDB collection
+- React Router for navigation
+
+--------------------------------------------------------------------------------
+UI/UX CONSIDERATIONS
+--------------------------------------------------------------------------------
+
+- Timeline should scroll vertically for users with many rank changes
+- Most recent rank at top, oldest at bottom
+- Empty state for users with no rank history
+- Loading skeleton while data loads
+- Mobile responsive design
+
+--------------------------------------------------------------------------------
+FILES TO CREATE/MODIFY
+--------------------------------------------------------------------------------
+
+NEW FILES:
+  - frontend/src/components/RankHistory.jsx
+  - frontend/src/components/RankTimeline.jsx (reusable component)
+
+MODIFIED FILES:
+  - frontend/src/App.jsx (add route)
+  - frontend/src/components/Result.jsx (add link)
+
+--------------------------------------------------------------------------------
+ACCEPTANCE CRITERIA
+--------------------------------------------------------------------------------
+
+[ ] Page displays all rank changes for a user
+[ ] Timeline is visually appealing and easy to read
+[ ] Proper loading and error states
+[ ] Navigation from Result page works
+[ ] Mobile responsive
+[ ] Matches existing dark theme
+
+================================================================================

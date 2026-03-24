@@ -1,0 +1,359 @@
+================================================================================
+                         USERLOOKER - PROJECT SUMMARY
+================================================================================
+
+PROJECT OVERVIEW
+--------------------------------------------------------------------------------
+UserLooker is a Discord user data extraction and lookup system with rank history
+tracking, admin dashboard, and data visualization. It allows searching for 
+Discord/Roblox user information extracted from DiscordChatExporter (DCE) JSON 
+exports and stored in MongoDB.
+
+The project bridges Discord and Roblox user identities by extracting Roblox
+usernames from Discord nicknames (formatted as "Rank | Username").
+
+================================================================================
+                              TECHNOLOGY STACK
+================================================================================
+
+BACKEND:
+  - Python 3.10+
+  - FastAPI (REST API framework)
+  - Motor (async MongoDB driver)
+  - PyMongo (MongoDB driver for extraction scripts)
+  - Uvicorn (ASGI server)
+  - python-jose (JWT authentication)
+  - slowapi (Rate limiting)
+  - httpx (HTTP client for Discord OAuth)
+
+FRONTEND:
+  - React 19 (with Vite 7)
+  - React Router DOM v7
+  - Axios (HTTP client)
+  - Recharts (Data visualization)
+
+DATABASE:
+  - MongoDB 4.4+
+
+ADDITIONAL:
+  - ijson (streaming JSON parser for large files)
+  - boto3 (Backblaze B2 / S3 integration)
+  - google-generativeai (Gemini AI for unknown user analysis)
+  - python-dotenv (environment variable management)
+
+================================================================================
+                             PROJECT STRUCTURE
+================================================================================
+
+userlooker/
+├── main.py                  # FastAPI backend API server
+├── database.py              # MongoDB connection utilities
+├── requirements.txt         # Python dependencies
+├── seed_db.py               # Database seeding script (test data)
+├── test_endpoint.py         # API endpoint test script
+├── README.md                # Project documentation
+├── .env                     # Environment configuration
+├── .env.example             # Environment template with all variables
+│
+├── routes/                  # API route modules
+│   ├── auth.py              # Discord OAuth2 authentication
+│   └── admin.py             # Admin dashboard endpoints
+│
+├── middleware/              # FastAPI middleware
+│   ├── audit.py             # Request audit logging
+│   └── rate_limit.py        # API rate limiting (slowapi)
+│
+├── utils/                   # Utility modules
+│   ├── auth.py              # JWT token handling
+│   ├── audit.py             # Audit log utilities
+│   ├── filters.py           # Search filter builders
+│   └── pagination.py        # Pagination helpers
+│
+├── extract/                 # Data extraction scripts
+│   ├── dce_extractor.py     # Main DCE JSON parser & MongoDB loader
+│   ├── unknown_analyzer.py  # AI-powered unknown user analyzer (Gemini)
+│   ├── verify_db.py         # Database verification script
+│   ├── verify_ranks.py      # Rank history verification script
+│   └── example.json         # Sample DCE export data
+│
+├── RankHistory/
+│   └── rank.txt             # Valid military ranks list
+│
+├── briefing/                # Feature documentation
+│   ├── README.txt           # Feature index
+│   ├── Frontend/            # Frontend feature specs (9 files)
+│   ├── API/                 # API feature specs (3 files)
+│   └── Backend/             # Backend feature specs (4 files)
+│
+└── frontend/                # React + Vite frontend
+    ├── package.json         # NPM dependencies
+    ├── vite.config.js       # Vite configuration
+    ├── vercel.json          # Vercel deployment config
+    ├── index.html           # Entry HTML
+    └── src/
+        ├── main.jsx         # React entry point
+        ├── App.jsx          # Main app with routing
+        ├── index.css        # Global styles (dark theme)
+        │
+        ├── components/      # Reusable components
+        │   ├── Home.jsx           # Landing/search page
+        │   ├── Result.jsx         # User details display
+        │   ├── Footer.jsx         # Footer component
+        │   ├── ThemeToggle.jsx    # Dark/Light mode toggle
+        │   ├── Skeleton.jsx       # Loading skeleton
+        │   ├── ActivityChart.jsx  # Message activity chart
+        │   ├── GuildActivity.jsx  # Guild distribution pie chart
+        │   ├── MessageViewer.jsx  # Message history viewer
+        │   ├── RankTimeline.jsx   # Rank progression timeline
+        │   ├── ProtectedRoute.jsx # Route auth wrapper
+        │   ├── Contact.jsx        # Contact page
+        │   ├── Privacy.jsx        # Privacy policy page
+        │   └── Terms.jsx          # Terms of service page
+        │
+        ├── pages/           # Page components
+        │   ├── Login.jsx          # Admin login page
+        │   ├── Dashboard.jsx      # Admin dashboard
+        │   ├── AuditLogs.jsx      # Audit logs viewer
+        │   ├── RankHistory.jsx    # Rank history page
+        │   └── AuthCallback.jsx   # OAuth callback handler
+        │
+        └── context/         # React context providers
+            ├── AuthContext.jsx   # Authentication state
+            └── ThemeContext.jsx  # Theme state
+
+================================================================================
+                              API ENDPOINTS
+================================================================================
+
+PUBLIC ENDPOINTS:
+--------------------------------------------------------------------------------
+GET  /                                    - Health check
+GET  /user/roblox/{username}              - Lookup by Roblox username
+GET  /user/discord/{discord_id}           - Lookup by Discord ID
+GET  /user/discord/{id}/messages          - Get user's messages (paginated)
+GET  /user/discord/{id}/activity          - Get activity chart data
+GET  /user/discord/{id}/guilds            - Get guild distribution data
+GET  /user/roblox/{username}/rank-history - Get rank history
+
+AUTHENTICATION ENDPOINTS:
+--------------------------------------------------------------------------------
+GET  /auth/discord                        - Initiate Discord OAuth
+GET  /auth/discord/callback               - OAuth callback handler
+POST /auth/refresh                        - Refresh access token
+POST /auth/logout                         - Logout user
+GET  /auth/me                             - Get current user info
+
+ADMIN ENDPOINTS (Protected):
+--------------------------------------------------------------------------------
+GET  /admin/statistics                    - Dashboard statistics
+GET  /admin/statistics/top-users          - Top users by message count
+GET  /admin/users                         - List users with filtering
+GET  /admin/audit-logs                    - View audit logs
+
+================================================================================
+                           EXTRACTION FEATURES
+================================================================================
+
+dce_extractor.py - Main data extraction script
+  Features:
+    - Streaming JSON parsing with ijson (handles large files)
+    - Extracts Roblox usernames from Discord nicknames
+    - Validates military ranks against rank.txt
+    - Tracks rank history changes
+    - Per-file saving (crash recovery, lower memory usage)
+    - Rate limiting to prevent MongoDB overload
+    - Supports local files, directories, and Backblaze B2 buckets
+    - Attaches guild/channel info to messages
+
+  Usage:
+    python extract/dce_extractor.py <path>              # Local file/directory
+    python extract/dce_extractor.py --b2 bucket prefix  # From Backblaze B2
+    python extract/dce_extractor.py --port 27018 <path> # Custom MongoDB port
+
+unknown_analyzer.py - AI-powered user analysis
+  Features:
+    - Uses Google Gemini 2.0 Flash Lite model
+    - Analyzes messages from unknown users
+    - Confidence threshold (60%) for classification
+    - Dry-run mode for testing
+
+  Usage:
+    python extract/unknown_analyzer.py [--dry-run] [--port PORT]
+
+================================================================================
+                              DATA MODELS
+================================================================================
+
+KNOWN USER (known_users collection):
+{
+    "RobloxUsername": "Username",
+    "DiscordAccounts": [
+        {"DiscordUserId": "123...", "DiscordUsername": "user#1234"}
+    ],
+    "FirstMsgFound": DateTime,
+    "LastMsgFound": DateTime,
+    "TotalMsg": Integer,
+    "GuildCount": Integer,
+    "CurrentRank": "OF-9, GEN, ACIC" (optional),
+    "Note": "Optional (e.g., 'AI Analyzed (75% confidence)')"
+}
+
+UNKNOWN USER (unknown_users collection):
+{
+    "DiscordUserId": "123...",
+    "DiscordUsername": "user#1234",
+    "Nickname": "Original nickname or null",
+    "Reason": "no_nickname | no_separator | invalid_format",
+    "FirstMsgFound": DateTime,
+    "LastMsgFound": DateTime,
+    "TotalMsg": Integer,
+    "GuildCount": Integer
+}
+
+RANK HISTORY (rank_history collection):
+{
+    "RobloxUsername": "Username",
+    "PreviousRank": "OF-1a, 2LT" or null,
+    "NewRank": "OF-9, GEN, ACIC",
+    "RecordedAt": DateTime
+}
+
+ADMIN SESSION (admin_sessions collection):
+{
+    "discord_id": "123...",
+    "username": "user#1234",
+    "avatar": "avatar_hash",
+    "is_admin": Boolean,
+    "created_at": DateTime
+}
+
+AUDIT LOG (audit_logs collection):
+{
+    "timestamp": DateTime,
+    "event_type": "access | admin | data | system",
+    "action": "login | logout | search | etc.",
+    "actor": "username (discord_id)",
+    "target": "resource affected",
+    "ip_address": "1.2.3.4",
+    "success": Boolean
+}
+
+MESSAGE (message_db.{discord_id} collection):
+{
+    "id": "message_id",
+    "content": "message text",
+    "timestamp": "ISO date",
+    "author": { ... },
+    "guild": {"id": "...", "name": "Guild Name", "iconUrl": "..."},
+    "channel": {"id": "...", "name": "channel-name", "type": "..."}
+}
+
+================================================================================
+                        ENVIRONMENT VARIABLES
+================================================================================
+
+WEBSITE & API (Production Server):
+--------------------------------------------------------------------------------
+MONGO_URI=mongodb://localhost:27017         # MongoDB connection string
+DB_NAME=discord_data                        # Database name
+DISCORD_CLIENT_ID=...                       # Discord OAuth client ID
+DISCORD_CLIENT_SECRET=...                   # Discord OAuth client secret
+DISCORD_REDIRECT_URI=http://...:8001/auth/discord/callback
+ADMIN_DISCORD_IDS=123456789,987654321       # Comma-separated admin IDs
+JWT_SECRET_KEY=...                          # Strong random string (64+ chars)
+ACCESS_TOKEN_EXPIRE_MINUTES=60              # [OPTIONAL] Default: 60
+REFRESH_TOKEN_EXPIRE_DAYS=7                 # [OPTIONAL] Default: 7
+FRONTEND_URL=http://...:3000                # Frontend URL for redirects
+REDIS_URL=redis://localhost:6379            # [OPTIONAL] For rate limiting
+
+EXTRACTOR (Extraction Server):
+--------------------------------------------------------------------------------
+MONGO_HOST=localhost                        # MongoDB host
+MONGO_PORT=27017                            # MongoDB port
+DB_NAME=discord_data                        # Database name
+MONGO_BATCH_SIZE=50                         # [OPTIONAL] Users per batch
+MONGO_BATCH_DELAY=0.5                       # [OPTIONAL] Seconds between batches
+MONGO_MSG_BATCH_SIZE=25                     # [OPTIONAL] Messages per batch
+MONGO_MSG_BATCH_DELAY=0.5                   # [OPTIONAL] Message batch delay
+B2_KEY_ID=...                               # [OPTIONAL] Backblaze B2 key
+B2_APP_KEY=...                              # [OPTIONAL] Backblaze B2 app key
+B2_ENDPOINT=https://s3...                   # [OPTIONAL] B2 endpoint
+GEMINI_API_KEY=...                          # [OPTIONAL] Google Gemini API key
+
+================================================================================
+                           DEPLOYMENT
+================================================================================
+
+DEVELOPMENT:
+  Backend:   uvicorn main:app --host 127.0.0.1 --port 8001
+  Frontend:  cd frontend && npm run dev
+
+PRODUCTION (PM2):
+  1. Create startup script (start-api.sh):
+     #!/bin/bash
+     cd /path/to/userlooker
+     source venv/bin/activate
+     exec uvicorn main:app --host 0.0.0.0 --port 8001
+
+  2. Start services:
+     pm2 start start-api.sh --name userlooker-api
+     pm2 serve frontend/dist 3000 --spa --name userlooker-frontend
+     pm2 save
+     pm2 startup
+
+VERCEL (Frontend Only):
+  - Set VITE_API_URL environment variable to backend URL
+  - Root directory: frontend
+  - Build command: npm run build
+  - Output directory: dist
+
+================================================================================
+                           KEY FEATURES
+================================================================================
+
+1. DUAL IDENTITY LINKING
+   - Connects Discord accounts to Roblox usernames
+   - Multiple Discord accounts can link to one Roblox user
+
+2. RANK TRACKING
+   - Extracts military ranks from nicknames
+   - Records rank change history over time
+   - Visual rank timeline component
+
+3. MESSAGE ARCHIVAL
+   - Stores complete message history per user with guild/channel context
+   - Message viewer with pagination
+
+4. DATA VISUALIZATION
+   - Activity charts showing messages over time
+   - Guild activity pie charts
+   - Statistics dashboard with totals
+
+5. ADMIN AUTHENTICATION
+   - Discord OAuth2 login
+   - JWT token-based sessions
+   - Admin whitelist via ADMIN_DISCORD_IDS
+
+6. AUDIT LOGGING
+   - Automatic request logging via middleware
+   - Login/logout tracking
+   - Admin-accessible audit log viewer
+
+7. RATE LIMITING
+   - API protection with slowapi
+   - Tiered limits for different endpoints
+   - Optional Redis backend
+
+8. THEME SUPPORT
+   - Dark/Light mode toggle
+   - Persisted via localStorage
+
+9. CLOUD STORAGE SUPPORT
+   - Backblaze B2 integration for remote JSON files
+
+10. AI-POWERED ANALYSIS
+    - Gemini AI identifies unknown users from message patterns
+
+================================================================================
+                      SUMMARY GENERATED: 2025-12-22
+================================================================================

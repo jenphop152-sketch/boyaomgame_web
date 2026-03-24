@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const session = require('express-session');
-const db = require('./database');
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,90 +16,25 @@ app.use(session({
     cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 } // 24 hours
 }));
 
-// Serve ALL static files from 'root'. Since index.html inside root exists, accessing '/' will serve root/index.html.
+// Serve ALL static files from 'root'. 
+// Because the files are in `root/parrot/`, visiting `http://localhost:3000/parrot/` works automatically via this single command!
 app.use(express.static(path.join(__dirname, 'root')));
 
-// API Endpoint to handle admin login
-app.post('/api/login', (req, res) => {
-    const { username, password } = req.body;
-    // Hardcoded credentials for simplicity
-    if (username === 'admin' && password === 'password') {
-        req.session.isAdmin = true;
-        res.json({ success: true, message: 'Logged in successfully' });
-    } else {
-        res.status(401).json({ success: false, message: 'Invalid credentials' });
-    }
-});
+// Import the modular API logic for the Parrot System
+const parrotRouter = require('./website_sys/parrot_system/router');
 
-// API Endpoint to check auth status
-app.get('/api/check-auth', (req, res) => {
-    if (req.session.isAdmin) {
-        res.json({ authenticated: true });
-    } else {
-        res.json({ authenticated: false });
-    }
-});
+// Mount the parrot router under the /api/parrot namespace
+app.use('/api', parrotRouter);
 
-// API Endpoint to logout
-app.post('/api/logout', (req, res) => {
-    req.session.destroy();
-    res.json({ success: true });
-});
-
-// Middleware to protect admin routes
-function requireAdmin(req, res, next) {
-    if (req.session.isAdmin) {
-        next();
-    } else {
-        res.status(401).json({ success: false, message: 'Unauthorized' });
-    }
-}
-
-// API Endpoint to GET all posts
-app.get('/api/posts', (req, res) => {
-    db.all("SELECT id, title, date, summary FROM posts ORDER BY id DESC", [], (err, rows) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else {
-            res.json({ posts: rows });
-        }
-    });
-});
-
-// API Endpoint to GET a single post by ID
-app.get('/api/posts/:id', (req, res) => {
-    const id = req.params.id;
-    db.get("SELECT * FROM posts WHERE id = ?", [id], (err, row) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-        } else if (row) {
-            res.json({ post: row });
-        } else {
-            res.status(404).json({ error: "Post not found" });
-        }
-    });
-});
-
-// API Endpoint to POST a new post (Protected)
-app.post('/api/posts', requireAdmin, (req, res) => {
-    const { title, date, summary, content } = req.body;
-    if (!title || !date || !summary || !content) {
-        return res.status(400).json({ error: "All fields are required" });
-    }
-
-    db.run(
-        `INSERT INTO posts (title, date, summary, content) VALUES (?, ?, ?, ?)`,
-        [title, date, summary, content],
-        function (err) {
-            if (err) {
-                res.status(500).json({ error: err.message });
-            } else {
-                res.json({ success: true, postId: this.lastID });
-            }
-        }
-    );
-});
-
+// Set up http-proxy-middleware for the standalone Python backend
+const { createProxyMiddleware } = require('http-proxy-middleware');
+app.use('/api/userlooker', createProxyMiddleware({
+    target: 'http://localhost:8001',
+    changeOrigin: true,
+    pathRewrite: {
+        '^/api/userlooker': '', // Re-route to bare Python endpoints
+    },
+}));
 
 app.listen(PORT, () => {
     console.log(`Server successfully started! \nOpen your browser and navigate to: http://localhost:${PORT}`);

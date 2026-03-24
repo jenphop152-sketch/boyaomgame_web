@@ -1,0 +1,70 @@
+================================================================================
+                   FEATURE BRIEFING: SEARCH BY DISCORD ID
+================================================================================
+Category: Frontend
+Priority: High
+Complexity: Low
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+
+Enhance the home page search functionality to allow users to search by either
+Roblox username OR Discord ID. The backend already supports this via the
+/user/discord/{discord_id} endpoint.
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+1. Add toggle or dropdown to select search type:
+   - "Roblox Username" (current default)
+   - "Discord ID"
+
+2. Input validation:
+   - Discord ID: numeric only, 17-20 digits
+   - Roblox Username: alphanumeric + underscore, 3-20 chars
+
+3. Route to appropriate result page based on search type
+
+4. Visual indicator of selected search type
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+- Existing API: GET /user/discord/{discord_id}
+- Existing API: GET /user/roblox/{roblox_username}
+
+--------------------------------------------------------------------------------
+UI/UX CONSIDERATIONS
+--------------------------------------------------------------------------------
+
+- Clear toggle/switch between search modes
+- Placeholder text changes based on mode
+- Input validation with error messages
+- Remember last used search type (localStorage)
+
+--------------------------------------------------------------------------------
+FILES TO CREATE/MODIFY
+--------------------------------------------------------------------------------
+
+MODIFIED FILES:
+  - frontend/src/components/Home.jsx (add search type toggle)
+  - frontend/src/App.jsx (add Discord result route if needed)
+  - frontend/src/components/Result.jsx (handle Discord ID results)
+
+NEW FILES (optional):
+  - frontend/src/components/SearchToggle.jsx
+
+--------------------------------------------------------------------------------
+ACCEPTANCE CRITERIA
+--------------------------------------------------------------------------------
+
+[ ] Users can toggle between Roblox/Discord search modes
+[ ] Discord ID search returns correct results
+[ ] Input validation works for both types
+[ ] Search type preference is remembered
+[ ] Clear UX indicating current search mode
+
+================================================================================

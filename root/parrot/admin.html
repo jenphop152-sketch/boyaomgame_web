@@ -9,10 +9,11 @@
 </head>
 <body class="bg-gray-100 min-h-screen text-gray-800">
   
-  <nav class="bg-blue-900 text-white p-4 shadow flex justify-between items-center">
-    <h1 class="text-xl font-bold">ระบบจัดการข่าวซื่อ (Admin)</h1>
-    <div>
-        <a href="index.html" class="hover:underline mr-4" target="_blank">ดูหน้าเว็บไซต์</a>
+  <nav class="bg-blue-900 text-white p-4 shadow flex flex-col sm:flex-row justify-between items-center">
+    <h1 class="text-xl font-bold mb-4 sm:mb-0 text-center sm:text-left">ระบบจัดการข่าวซื่อ (Admin)</h1>
+    <div class="flex flex-wrap justify-center items-center gap-4">
+        <a href="sql.html" class="hover:underline" style="color: #93c5fd;">SQL Manager</a>
+        <a href="index.html" class="hover:underline" target="_blank">ดูหน้าเว็บไซต์</a>
         <button id="logoutBtn" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded">ออกจากระบบ</button>
     </div>
   </nav>
