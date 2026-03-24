@@ -1,0 +1,127 @@
+================================================================================
+                      FEATURE BRIEFING: SEARCH FILTERS
+================================================================================
+Category: API
+Priority: Medium
+Complexity: Medium
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+
+Add advanced filtering capabilities to search and list endpoints. This allows
+users to narrow down results by various criteria like date range, rank, guild,
+message count, etc.
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+1. Filter parameters for user searches:
+   - rank: Filter by current rank
+   - guild: Filter by guild name
+   - minMessages: Minimum message count
+   - maxMessages: Maximum message count
+   - dateFrom: Messages after this date
+   - dateTo: Messages before this date
+   - hasMultipleAccounts: Boolean (multiple Discord accounts)
+
+2. Filter parameters for message searches:
+   - keyword: Search in message content
+   - guild: Filter by guild
+   - dateFrom/dateTo: Date range
+   - hasAttachments: Boolean
+
+3. Combine with pagination
+4. Case-insensitive text search
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+- MongoDB text indexes for keyword search
+- Pagination implementation
+
+--------------------------------------------------------------------------------
+IMPLEMENTATION APPROACH
+--------------------------------------------------------------------------------
+
+1. Create filter models:
+
+```python
+from datetime import datetime
+from typing import Optional
+
+class UserFilterParams(BaseModel):
+    rank: Optional[str] = None
+    guild: Optional[str] = None
+    minMessages: Optional[int] = None
+    maxMessages: Optional[int] = None
+    dateFrom: Optional[datetime] = None
+    dateTo: Optional[datetime] = None
+    hasMultipleAccounts: Optional[bool] = None
+
+def build_user_query(filters: UserFilterParams) -> dict:
+    query = {}
+    
+    if filters.rank:
+        query["CurrentRank"] = {"$regex": filters.rank, "$options": "i"}
+    
+    if filters.minMessages:
+        query["TotalMsg"] = {"$gte": filters.minMessages}
+    
+    if filters.dateFrom:
+        query["LastMsgFound"] = {"$gte": filters.dateFrom}
+    
+    # ... more filters
+    
+    return query
+```
+
+2. Endpoint example:
+
+```python
+@app.get("/users/search")
+async def search_users(
+    rank: str = None,
+    guild: str = None,
+    minMessages: int = None,
+    page: int = 1,
+    limit: int = 50
+):
+    filters = UserFilterParams(...)
+    query = build_user_query(filters)
+    return paginate(known_users_collection, query, pagination_params)
+```
+
+--------------------------------------------------------------------------------
+FILES TO CREATE/MODIFY
+--------------------------------------------------------------------------------
+
+NEW FILES:
+  - utils/filters.py
+  - models/filter_params.py
+
+MODIFIED FILES:
+  - main.py (add filter params to endpoints)
+
+--------------------------------------------------------------------------------
+API EXAMPLES
+--------------------------------------------------------------------------------
+
+GET /users/search?rank=OF-9&minMessages=100&page=1
+GET /users/search?guild=Thai%20Military%20RP&dateFrom=2025-01-01
+GET /user/{id}/messages?keyword=hello&hasAttachments=true
+
+--------------------------------------------------------------------------------
+ACCEPTANCE CRITERIA
+--------------------------------------------------------------------------------
+
+[ ] All filter parameters work correctly
+[ ] Filters can be combined
+[ ] Case-insensitive text matching
+[ ] Date range filtering works
+[ ] Empty results handled gracefully
+[ ] Invalid filters return appropriate errors
+
+================================================================================

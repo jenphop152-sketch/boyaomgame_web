@@ -1,0 +1,93 @@
+================================================================================
+                      FEATURE BRIEFING: GUILD ACTIVITY
+================================================================================
+Category: Frontend
+Priority: Medium
+Complexity: Medium
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+
+Display which Discord servers (guilds) a user is active in, with message counts
+per guild. This shows the distribution of a user's activity across servers.
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+1. Display for each guild:
+   - Guild name
+   - Message count in that guild
+   - Percentage of total messages
+   - First/last message dates in that guild
+
+2. Visualization options:
+   - Pie chart showing distribution
+   - Bar chart for comparison
+   - Simple list with progress bars
+
+3. Sorting:
+   - By message count (default)
+   - By guild name
+   - By most recent activity
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+- Requires NEW API: GET /user/{id}/guild-activity
+- Backend needs to aggregate messages by guild
+
+--------------------------------------------------------------------------------
+DATA STRUCTURE NEEDED
+--------------------------------------------------------------------------------
+
+API Response format:
+{
+  "userId": "...",
+  "totalGuilds": 5,
+  "guilds": [
+    {
+      "guildName": "Thai Military RP",
+      "messageCount": 1250,
+      "percentage": 65.5,
+      "firstMessage": "2025-01-15",
+      "lastMessage": "2025-12-20"
+    },
+    ...
+  ]
+}
+
+--------------------------------------------------------------------------------
+UI/UX CONSIDERATIONS
+--------------------------------------------------------------------------------
+
+- Most active guild should stand out
+- Colors should be distinguishable
+- Show actual numbers, not just percentages
+- Handle long guild names gracefully
+
+--------------------------------------------------------------------------------
+FILES TO CREATE/MODIFY
+--------------------------------------------------------------------------------
+
+NEW FILES:
+  - frontend/src/components/GuildActivity.jsx
+  - frontend/src/components/GuildPieChart.jsx
+
+MODIFIED FILES:
+  - frontend/src/components/Result.jsx (add section/tab)
+
+--------------------------------------------------------------------------------
+ACCEPTANCE CRITERIA
+--------------------------------------------------------------------------------
+
+[ ] All guilds displayed with correct counts
+[ ] Pie/bar chart renders correctly
+[ ] Percentages add up to 100%
+[ ] Sorting works
+[ ] Empty state for single-guild users
+[ ] Responsive design
+
+================================================================================

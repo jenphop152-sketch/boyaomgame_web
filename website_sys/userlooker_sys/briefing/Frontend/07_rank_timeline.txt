@@ -1,0 +1,100 @@
+================================================================================
+                      FEATURE BRIEFING: RANK TIMELINE
+================================================================================
+Category: Frontend
+Priority: Medium
+Complexity: Medium
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+
+Create a beautiful visual timeline component that shows rank progression over
+time. This is the visualization component used by the Rank History Page but
+can also be embedded elsewhere.
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+1. Vertical timeline layout:
+   - Line connecting all rank changes
+   - Circular markers at each change point
+   - Date labels on one side
+   - Rank badges on the other side
+
+2. Color coding by rank tier:
+   - Enlisted (OR-1 to OR-8): Blue
+   - Junior Officers (OF-D to OF-3): Green
+   - Senior Officers (OF-4 to OF-6): Gold
+   - Generals (OF-7 to OF-10): Purple
+   - Special positions: Red
+
+3. Duration display:
+   - Show time spent at each rank
+   - "3 months, 12 days" format
+
+4. Animations:
+   - Fade in on scroll
+   - Smooth appearance
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+- Rank history data from API
+- Rank tier classification logic
+
+--------------------------------------------------------------------------------
+UI/UX CONSIDERATIONS
+--------------------------------------------------------------------------------
+
+- Clear visual hierarchy
+- Easy to scan quickly
+- Touch-friendly on mobile
+- Print-friendly styling
+
+--------------------------------------------------------------------------------
+FILES TO CREATE/MODIFY
+--------------------------------------------------------------------------------
+
+NEW FILES:
+  - frontend/src/components/RankTimeline.jsx
+  - frontend/src/components/RankBadge.jsx
+  - frontend/src/utils/rankUtils.js (tier classification)
+  - frontend/src/styles/timeline.css
+
+--------------------------------------------------------------------------------
+DESIGN MOCKUP
+--------------------------------------------------------------------------------
+
+         ┌─────────────────────────────────────────┐
+         │  Dec 2025                               │
+         │    ●────┬── OF-9, GEN, ACIC            │
+         │         │   (Current - 2 months)        │
+         │         │                               │
+         │  Oct 2025                               │
+         │    ●────┼── OF-8, LTGEN                │
+         │         │   (6 months)                  │
+         │         │                               │
+         │  Apr 2025                               │
+         │    ●────┼── OF-5, COL                  │
+         │         │   (1 year, 2 months)         │
+         │         │                               │
+         │  Feb 2024                               │
+         │    ●────┴── OF-1a, 2LT                 │
+         │             (Initial)                   │
+         └─────────────────────────────────────────┘
+
+--------------------------------------------------------------------------------
+ACCEPTANCE CRITERIA
+--------------------------------------------------------------------------------
+
+[ ] Timeline displays all rank changes
+[ ] Color coding is correct
+[ ] Duration calculations are accurate
+[ ] Responsive design
+[ ] Animations are smooth
+[ ] Accessible (screen reader friendly)
+
+================================================================================

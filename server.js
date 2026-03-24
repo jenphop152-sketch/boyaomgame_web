@@ -23,8 +23,18 @@ app.use(express.static(path.join(__dirname, 'root')));
 // Import the modular API logic for the Parrot System
 const parrotRouter = require('./website_sys/parrot_system/router');
 
-// Mount the parrot router under the /api namespace
+// Mount the parrot router under the /api/parrot namespace
 app.use('/api', parrotRouter);
+
+// Set up http-proxy-middleware for the standalone Python backend
+const { createProxyMiddleware } = require('http-proxy-middleware');
+app.use('/api/userlooker', createProxyMiddleware({
+    target: 'http://localhost:8001',
+    changeOrigin: true,
+    pathRewrite: {
+        '^/api/userlooker': '', // Re-route to bare Python endpoints
+    },
+}));
 
 app.listen(PORT, () => {
     console.log(`Server successfully started! \nOpen your browser and navigate to: http://localhost:${PORT}`);

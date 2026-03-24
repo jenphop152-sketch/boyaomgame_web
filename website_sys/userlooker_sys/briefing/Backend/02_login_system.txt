@@ -1,0 +1,298 @@
+================================================================================
+                  FEATURE BRIEFING: LOGIN SYSTEM (Discord OAuth2)
+================================================================================
+Category: Backend
+Priority: Critical
+Complexity: High
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+
+Create a login system using Discord OAuth2 for authentication. This allows
+admins to log in using their Discord account, which is already integrated with
+the UserLooker ecosystem.
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+1. Discord OAuth2 Flow:
+   - Redirect to Discord authorization page
+   - Handle callback with authorization code
+   - Exchange code for access token
+   - Fetch Discord user info
+   - Create/update user session
+   - Generate JWT for API access
+
+2. Backend endpoints:
+   - GET /auth/discord - Redirect to Discord OAuth
+   - GET /auth/discord/callback - Handle OAuth callback
+   - POST /auth/logout - Invalidate token
+   - POST /auth/refresh - Get new access token
+   - GET /auth/me - Get current user info
+
+3. Admin whitelist:
+   - Only specific Discord User IDs can log in as admin
+   - Stored in MongoDB or .env
+   - Non-whitelisted users get "Unauthorized" error
+
+4. Session storage:
+   - Store Discord tokens in MongoDB
+   - Generate internal JWT for API auth
+   - Link Discord user to admin permissions
+
+--------------------------------------------------------------------------------
+DISCORD OAUTH2 SETUP
+--------------------------------------------------------------------------------
+
+1. Create Discord Application:
+   - Go to https://discord.com/developers/applications
+   - Create new application
+   - Go to OAuth2 section
+   - Add redirect URL: http://localhost:8001/auth/discord/callback
+   - Copy Client ID and Client Secret
+
+2. Required scopes:
+   - identify (get user ID, username, avatar)
+   - guilds (optional, verify server membership)
+
+3. Environment variables:
+   DISCORD_CLIENT_ID=your_client_id
+   DISCORD_CLIENT_SECRET=your_client_secret
+   DISCORD_REDIRECT_URI=http://localhost:8001/auth/discord/callback
+   ADMIN_DISCORD_IDS=123456789,987654321  # Comma-separated admin IDs
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+- httpx or aiohttp (for Discord API calls)
+- python-jose (JWT handling)
+
+--------------------------------------------------------------------------------
+IMPLEMENTATION APPROACH
+--------------------------------------------------------------------------------
+
+1. Discord OAuth URLs:
+   - Authorize: https://discord.com/api/oauth2/authorize
+   - Token: https://discord.com/api/oauth2/token
+   - User Info: https://discord.com/api/users/@me
+
+2. OAuth endpoints:
+
+```python
+import os
+import httpx
+from fastapi import APIRouter, HTTPException
+from fastapi.responses import RedirectResponse
+
+router = APIRouter(prefix="/auth", tags=["auth"])
+
+DISCORD_CLIENT_ID = os.getenv("DISCORD_CLIENT_ID")
+DISCORD_CLIENT_SECRET = os.getenv("DISCORD_CLIENT_SECRET")
+DISCORD_REDIRECT_URI = os.getenv("DISCORD_REDIRECT_URI")
+ADMIN_DISCORD_IDS = os.getenv("ADMIN_DISCORD_IDS", "").split(",")
+
+DISCORD_AUTH_URL = "https://discord.com/api/oauth2/authorize"
+DISCORD_TOKEN_URL = "https://discord.com/api/oauth2/token"
+DISCORD_USER_URL = "https://discord.com/api/users/@me"
+
+@router.get("/discord")
+async def discord_login():
+    """Redirect to Discord OAuth2 authorization page."""
+    params = {
+        "client_id": DISCORD_CLIENT_ID,
+        "redirect_uri": DISCORD_REDIRECT_URI,
+        "response_type": "code",
+        "scope": "identify"
+    }
+    url = f"{DISCORD_AUTH_URL}?{'&'.join(f'{k}={v}' for k, v in params.items())}"
+    return RedirectResponse(url=url)
+
+@router.get("/discord/callback")
+async def discord_callback(code: str):
+    """Handle Discord OAuth2 callback."""
+    # Exchange code for token
+    async with httpx.AsyncClient() as client:
+        token_response = await client.post(
+            DISCORD_TOKEN_URL,
+            data={
+                "client_id": DISCORD_CLIENT_ID,
+                "client_secret": DISCORD_CLIENT_SECRET,
+                "grant_type": "authorization_code",
+                "code": code,
+                "redirect_uri": DISCORD_REDIRECT_URI
+            },
+            headers={"Content-Type": "application/x-www-form-urlencoded"}
+        )
+        
+        if token_response.status_code != 200:
+            raise HTTPException(status_code=400, detail="Failed to get token")
+        
+        tokens = token_response.json()
+        access_token = tokens["access_token"]
+        
+        # Get user info
+        user_response = await client.get(
+            DISCORD_USER_URL,
+            headers={"Authorization": f"Bearer {access_token}"}
+        )
+        
+        if user_response.status_code != 200:
+            raise HTTPException(status_code=400, detail="Failed to get user info")
+        
+        discord_user = user_response.json()
+        discord_id = discord_user["id"]
+        username = discord_user["username"]
+        avatar = discord_user.get("avatar")
+    
+    # Check if user is admin
+    if discord_id not in ADMIN_DISCORD_IDS:
+        raise HTTPException(
+            status_code=403, 
+            detail="You are not authorized to access this application"
+        )
+    
+    # Create session and JWT
+    jwt_token = create_access_token(data={
+        "sub": discord_id,
+        "username": username,
+        "role": "admin"
+    })
+    
+    # Store session in MongoDB
+    await store_session(discord_id, username, tokens)
+    
+    # Redirect to frontend with token
+    frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
+    return RedirectResponse(url=f"{frontend_url}/auth/callback?token={jwt_token}")
+```
+
+3. Session storage:
+
+```python
+async def store_session(discord_id: str, username: str, tokens: dict):
+    """Store user session in MongoDB."""
+    collection = db["admin_sessions"]
+    
+    session_doc = {
+        "discord_id": discord_id,
+        "username": username,
+        "discord_access_token": tokens["access_token"],
+        "discord_refresh_token": tokens.get("refresh_token"),
+        "created_at": datetime.utcnow(),
+        "last_activity": datetime.utcnow()
+    }
+    
+    await collection.update_one(
+        {"discord_id": discord_id},
+        {"$set": session_doc},
+        upsert=True
+    )
+```
+
+FRONTEND:
+
+4. Login button:
+
+```jsx
+// components/LoginButton.jsx
+const LoginButton = () => {
+    const handleLogin = () => {
+        window.location.href = 'http://localhost:8001/auth/discord';
+    };
+    
+    return (
+        <button onClick={handleLogin} className="discord-login-btn">
+            <DiscordIcon />
+            Login with Discord
+        </button>
+    );
+};
+```
+
+5. Callback handler:
+
+```jsx
+// pages/AuthCallback.jsx
+const AuthCallback = () => {
+    const navigate = useNavigate();
+    const { login } = useAuth();
+    
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+        
+        if (token) {
+            login(token);
+            navigate('/admin/dashboard');
+        } else {
+            navigate('/login?error=auth_failed');
+        }
+    }, []);
+    
+    return <div>Authenticating...</div>;
+};
+```
+
+--------------------------------------------------------------------------------
+FILES TO CREATE/MODIFY
+--------------------------------------------------------------------------------
+
+BACKEND NEW FILES:
+  - routes/auth.py (Discord OAuth endpoints)
+  - utils/discord_oauth.py (OAuth helpers)
+
+BACKEND MODIFIED FILES:
+  - main.py (include auth router)
+  - database.py (add admin_sessions collection)
+  - .env (add Discord credentials)
+
+FRONTEND NEW FILES:
+  - frontend/src/pages/Login.jsx
+  - frontend/src/pages/AuthCallback.jsx
+  - frontend/src/context/AuthContext.jsx
+  - frontend/src/components/LoginButton.jsx
+  - frontend/src/components/ProtectedRoute.jsx
+
+FRONTEND MODIFIED FILES:
+  - frontend/src/App.jsx (add auth routes)
+
+--------------------------------------------------------------------------------
+SECURITY CONSIDERATIONS
+--------------------------------------------------------------------------------
+
+- Store Discord tokens securely (encrypted in DB)
+- Use HTTPS in production
+- Validate all callback parameters
+- Implement CSRF protection with state parameter
+- Short-lived JWTs with refresh
+- Whitelist only trusted Discord IDs
+
+--------------------------------------------------------------------------------
+ENVIRONMENT VARIABLES
+--------------------------------------------------------------------------------
+
+DISCORD_CLIENT_ID=your_discord_app_client_id
+DISCORD_CLIENT_SECRET=your_discord_app_client_secret
+DISCORD_REDIRECT_URI=http://localhost:8001/auth/discord/callback
+ADMIN_DISCORD_IDS=123456789012345678,987654321098765432
+JWT_SECRET_KEY=your-super-secret-jwt-key
+FRONTEND_URL=http://localhost:5173
+
+--------------------------------------------------------------------------------
+ACCEPTANCE CRITERIA
+--------------------------------------------------------------------------------
+
+[ ] Discord OAuth flow works end-to-end
+[ ] Only whitelisted Discord IDs can log in
+[ ] JWT is generated and sent to frontend
+[ ] Frontend stores token and manages auth state
+[ ] Protected routes redirect to login
+[ ] Session stored in MongoDB
+[ ] Token refresh works
+[ ] Logout clears session
+[ ] Error handling for OAuth failures
+
+================================================================================

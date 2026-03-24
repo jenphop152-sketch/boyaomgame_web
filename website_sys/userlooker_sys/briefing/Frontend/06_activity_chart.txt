@@ -1,0 +1,90 @@
+================================================================================
+                      FEATURE BRIEFING: ACTIVITY CHART
+================================================================================
+Category: Frontend
+Priority: Medium
+Complexity: Medium
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+
+Create a visual chart showing a user's message activity over time. This helps
+administrators understand user engagement patterns and activity levels.
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+1. Chart type: Line chart or bar chart
+   - X-axis: Time (days/weeks/months)
+   - Y-axis: Message count
+
+2. Time range options:
+   - Last 7 days
+   - Last 30 days
+   - Last 90 days
+   - Last year
+   - All time
+
+3. Interactive features:
+   - Hover to see exact values
+   - Click to filter by specific period
+
+4. Display on Result page or separate tab
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+- Requires NEW API: GET /user/{id}/activity-stats
+- Charting library: Chart.js or Recharts (React-friendly)
+
+--------------------------------------------------------------------------------
+DATA STRUCTURE NEEDED
+--------------------------------------------------------------------------------
+
+API Response format:
+{
+  "userId": "...",
+  "period": "30d",
+  "data": [
+    {"date": "2025-12-01", "count": 15},
+    {"date": "2025-12-02", "count": 23},
+    ...
+  ]
+}
+
+--------------------------------------------------------------------------------
+UI/UX CONSIDERATIONS
+--------------------------------------------------------------------------------
+
+- Chart should be responsive
+- Colors should match theme (dark/light)
+- Clear labels and legend
+- Empty state for users with no activity
+
+--------------------------------------------------------------------------------
+FILES TO CREATE/MODIFY
+--------------------------------------------------------------------------------
+
+NEW FILES:
+  - frontend/src/components/ActivityChart.jsx
+  - frontend/src/utils/chartConfig.js
+
+MODIFIED FILES:
+  - frontend/src/components/Result.jsx (embed chart)
+  - frontend/package.json (add chart library)
+
+--------------------------------------------------------------------------------
+ACCEPTANCE CRITERIA
+--------------------------------------------------------------------------------
+
+[ ] Chart displays accurately with real data
+[ ] Time range filter works
+[ ] Hover tooltips show values
+[ ] Responsive on mobile
+[ ] Works with dark/light themes
+[ ] Empty state handled
+
+================================================================================

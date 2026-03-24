@@ -1,0 +1,58 @@
+# User Login System (Discord OAuth)
+
+## Overview
+Implement Discord OAuth login for ALL users (not just admins). Users must be logged in to use the search functionality.
+
+## Current System
+- Only admins can login via Discord
+- Regular users can search without login
+- Separate "Admin Login" button on home page
+
+## New System
+
+### User Roles
+1. **Guest** - Not logged in, can only see landing page
+2. **User** - Logged in via Discord, can search and view results
+3. **Admin** - Logged in + whitelisted in `ADMIN_DISCORD_IDS`, full access
+
+### Flow
+```
+Landing Page
+    ↓
+[Login with Discord] button
+    ↓
+Discord OAuth
+    ↓
+Logged in → Can search
+    ↓
+If admin → Can access /admin/*
+```
+
+### UI Changes
+1. **Home page**: Show login button if not logged in, show search if logged in
+2. **Single login button**: Same button for all users (no separate admin login)
+3. **Navigation**: Show user avatar/name when logged in
+4. **Protected routes**: Search and result pages require login
+
+### Backend Changes
+1. Allow all Discord users to login (not just admins)
+2. Store user sessions for all users
+3. Check admin status only for admin routes
+4. New middleware to require auth for search endpoints
+
+### Database
+- Store all user sessions (not just admin)
+- Track: Discord ID, username, avatar, login time
+
+## Questions to Clarify
+
+1. **Rate limiting per user?** Should logged-in users have different rate limits than anonymous?
+2. **User dashboard?** Should users see their own search history?
+3. **Block specific users?** Need ability to ban users by Discord ID?
+4. **Session duration?** How long should users stay logged in?
+5. **Data privacy?** Show privacy notice during login about data collection?
+
+## Dependencies
+- Backend: routes/auth.py, utils/auth.py
+- Frontend: AuthContext, Home, Login, ProtectedRoute
+- Database: user_sessions collection

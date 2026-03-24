@@ -1,0 +1,107 @@
+================================================================================
+                        FEATURE BRIEFING: PAGINATION
+================================================================================
+Category: API
+Priority: High
+Complexity: Medium
+
+--------------------------------------------------------------------------------
+OVERVIEW
+--------------------------------------------------------------------------------
+
+Add pagination support to all list-based API endpoints. This improves
+performance for large datasets and provides better UX on the frontend.
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+1. Apply pagination to these endpoints:
+   - GET /user/discord/{id}/messages
+   - GET /admin/users (new endpoint)
+   - GET /admin/statistics (for lists)
+
+2. Query parameters:
+   - page: Page number (default: 1)
+   - limit: Items per page (default: 50, max: 100)
+   - sort: Field to sort by
+   - order: asc or desc
+
+3. Response format:
+   {
+     "data": [...],
+     "pagination": {
+       "page": 1,
+       "limit": 50,
+       "total": 1250,
+       "totalPages": 25,
+       "hasNext": true,
+       "hasPrev": false
+     }
+   }
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+- MongoDB skip/limit operations
+- Pydantic models for pagination params
+
+--------------------------------------------------------------------------------
+IMPLEMENTATION APPROACH
+--------------------------------------------------------------------------------
+
+1. Create pagination helper:
+
+```python
+from pydantic import BaseModel, Field
+
+class PaginationParams(BaseModel):
+    page: int = Field(1, ge=1)
+    limit: int = Field(50, ge=1, le=100)
+    sort: str = "timestamp"
+    order: str = "desc"
+
+def paginate(collection, query, params: PaginationParams):
+    skip = (params.page - 1) * params.limit
+    total = collection.count_documents(query)
+    data = collection.find(query).sort(
+        params.sort, 
+        -1 if params.order == "desc" else 1
+    ).skip(skip).limit(params.limit)
+    
+    return {
+        "data": list(data),
+        "pagination": {
+            "page": params.page,
+            "limit": params.limit,
+            "total": total,
+            "totalPages": (total + params.limit - 1) // params.limit,
+            "hasNext": params.page * params.limit < total,
+            "hasPrev": params.page > 1
+        }
+    }
+```
+
+--------------------------------------------------------------------------------
+FILES TO CREATE/MODIFY
+--------------------------------------------------------------------------------
+
+NEW FILES:
+  - utils/pagination.py
+
+MODIFIED FILES:
+  - main.py (update endpoints with pagination)
+
+--------------------------------------------------------------------------------
+ACCEPTANCE CRITERIA
+--------------------------------------------------------------------------------
+
+[ ] All list endpoints support pagination params
+[ ] Response includes pagination metadata
+[ ] Page numbers work correctly
+[ ] Total counts are accurate
+[ ] Sort and order work
+[ ] Edge cases handled (empty, last page)
+
+================================================================================

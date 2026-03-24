@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+motor
+python-dotenv
+pymongo
+ijson
+boto3
+google-generativeai
+python-jose[cryptography]
+passlib[bcrypt]
+httpx
+slowapi
