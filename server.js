@@ -34,7 +34,7 @@ app.use('/api', parrotRouter);
 // Set up http-proxy-middleware for the standalone Python backend
 const { createProxyMiddleware } = require('http-proxy-middleware');
 app.use('/api/userlooker', createProxyMiddleware({
-    target: 'http://localhost:8001',
+    target: 'http://127.0.0.1:8001',
     changeOrigin: true,
     pathRewrite: {
         '^/api/userlooker': '', // Re-route to bare Python endpoints
