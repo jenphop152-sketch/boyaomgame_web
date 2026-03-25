@@ -144,14 +144,36 @@ def list_b2_json_files(bucket: str, prefix: str = "") -> list:
 
 
 def download_b2_file(bucket: str, key: str) -> Path:
-    """Download a file from B2 to a temporary file. Returns temp file path."""
+    """Download a file from B2 to a temporary file with progress. Returns temp file path."""
     s3 = get_b2_client()
+    
+    # Get file size first
+    try:
+        head = s3.head_object(Bucket=bucket, Key=key)
+        total_size = head['ContentLength']
+        total_mb = total_size / (1024 * 1024)
+    except Exception:
+        total_size = 0
+        total_mb = 0
     
     # Create temp file with .json extension
     temp_fd, temp_path = tempfile.mkstemp(suffix='.json')
     os.close(temp_fd)
     
-    s3.download_file(bucket, key, temp_path)
+    if total_size > 0:
+        downloaded = [0]  # use list for closure mutability
+        
+        def progress_callback(bytes_transferred):
+            downloaded[0] += bytes_transferred
+            done_mb = downloaded[0] / (1024 * 1024)
+            pct = (downloaded[0] / total_size) * 100
+            print(f"    Downloading: {done_mb:.1f} MB / {total_mb:.1f} MB ({pct:.0f}%)", end='\r')
+        
+        s3.download_file(bucket, key, temp_path, Callback=progress_callback)
+        print()  # newline after progress
+    else:
+        s3.download_file(bucket, key, temp_path)
+    
     return Path(temp_path)
 
 
