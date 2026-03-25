@@ -57,7 +57,6 @@ MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017")
 message_db_client = AsyncIOMotorClient(MONGO_URI)
 message_db = message_db_client["message_db"]
 
-
 # ============================================================================
 # Models
 # ============================================================================
