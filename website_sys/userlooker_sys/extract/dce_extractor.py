@@ -137,7 +137,7 @@ def list_b2_json_files(bucket: str, prefix: str = "") -> list:
         for obj in page.get('Contents', []):
             if obj['Key'].endswith('.json'):
                 files.append(obj['Key'])
-        print(f"  ... scanned {page_count} page(s), found {len(files)} JSON file(s) so far", end='\r')
+        print(f"  ... scanned {page_count} page(s), found {len(files)} JSON file(s) so far", end='\r', flush=True)
     
     print()  # newline after progress
     return files
@@ -167,7 +167,7 @@ def download_b2_file(bucket: str, key: str) -> Path:
             downloaded[0] += bytes_transferred
             done_mb = downloaded[0] / (1024 * 1024)
             pct = (downloaded[0] / total_size) * 100
-            print(f"    Downloading: {done_mb:.1f} MB / {total_mb:.1f} MB ({pct:.0f}%)", end='\r')
+            print(f"    Downloading: {done_mb:.1f} MB / {total_mb:.1f} MB ({pct:.0f}%)", end='\r', flush=True)
         
         s3.download_file(bucket, key, temp_path, Callback=progress_callback)
         print()  # newline after progress
